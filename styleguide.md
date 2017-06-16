@@ -43,3 +43,7 @@ Blocks
 .button
   .button--secondary
   .button--large
+
+Notes:
+- rename .layout-item as .layout-row and layout-item--* as layout-column-*?
+- layout items have to have a max-width for super big screens

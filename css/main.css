@@ -11,7 +11,14 @@ p {
   margin: 0;
 }
 
+/* This rule set extends the uniform vertical rhythm to the headings and
+paragraphs. Not sure if  it belongs here or to the layout grid.  */
 
+h1,
+h2,
+p {
+  margin-bottom: 1.5rem;
+}
 
 
 
@@ -41,6 +48,15 @@ declarations for the first and last column. The width of the columns is
 established as 30%, the remaining 9.9% is divided between a right margin for
 the first and a left margin for the last column. (Note: This could've been
 done way more easier through flexbox with a space-between value.)
+
+The margin-bottom: 0; declaration on the last layout__item ensures that the
+end of the page doesn't have extra margins. You may need to check the last
+item  in the last container though. It could add extra margins on its own
+which you have to handle differently. 
+
+The .layout__item--nested modifier strips the container of its bottom margin. 
+This is useful because when you have a container inside another container their bottom margins compound. 
+With this modifier you can maintain the unified vertical rhythm.
 */
 
 .layout {
@@ -64,6 +80,7 @@ done way more easier through flexbox with a space-between value.)
 
   .layout__item--ninetenth {
     width: 90%;
+    max-width: 1600px;
     margin: 0 auto 1.5rem;
     background: lightyellow;
   }
@@ -95,8 +112,13 @@ done way more easier through flexbox with a space-between value.)
     display: block;
   }
 
+  .layout__item--nested {
+    margin-bottom: 0;
+  }
 
-
+  .layout__item:last-child {
+    margin-bottom: 0;
+  }
 
 
 /*------------------------------------*\
@@ -105,9 +127,16 @@ done way more easier through flexbox with a space-between value.)
 
 .testimonial {
   width: 100%;
-
+  background: lightcoral;
 }
 
+  .testimonial__image {
+    width: 100%;
+  }
+
+footer p { /* Temporary until I handle the footer's last p. */
+  margin-bottom: 0;
+}
 
 
 
