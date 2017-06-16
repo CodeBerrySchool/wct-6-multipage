@@ -54,9 +54,21 @@ end of the page doesn't have extra margins. You may need to check the last
 item  in the last container though. It could add extra margins on its own
 which you have to handle differently. 
 
-The .layout__item--nested modifier strips the container of its bottom margin. 
-This is useful because when you have a container inside another container their bottom margins compound. 
-With this modifier you can maintain the unified vertical rhythm.
+The .layout__item--nested modifier strips the container of its bottom margin.
+This is useful because when you have a container inside another container
+their bottom margins compound.  With this modifier you can maintain the
+unified vertical rhythm. 
+
+However this poses a problem when the nested containers are stacked and they
+have no margin. The media query takes care of that by switching  back the
+original margin on the nested elements but only in mobile layout.
+
+The .layout__item--two-thirds is in a media query. In this case it solves  the
+problem of the responsive embedded iframe that is in a 100% wide container.
+When the screen gets large enough, the query triggers and switches the
+embedded  iframe to a centered 66.6% wide container. For this to work the
+class must be  placed below the full-width class (CSS cascading). 
+
 */
 
 .layout {
@@ -124,9 +136,19 @@ With this modifier you can maintain the unified vertical rhythm.
     display: block;
   }
 
+
   .layout__item--nested {
     margin-bottom: 0;
   }
+
+  @media (max-width: 768px) {
+    
+    .layout__item--nested {
+      margin-bottom: 1.5rem;
+    }
+
+  }
+
 
   .layout__item:last-child {
     margin-bottom: 0;
@@ -146,10 +168,6 @@ With this modifier you can maintain the unified vertical rhythm.
     width: 100%;
   }
 
-footer p { /* Temporary until I handle the footer's last p. */
-  margin-bottom: 0;
-}
-
 
 
 
@@ -157,6 +175,14 @@ footer p { /* Temporary until I handle the footer's last p. */
 /*------------------------------------*\
   #MEDIA-OBJECT-STYLES
 \*------------------------------------*/
+
+/*  This section creates a responsive wrapper for iframes. Since iframes
+arrive in a fixed container,  we need to make them responsive somehow. This
+method requires a wrapper around the iframe (.responsive-media)  and a class
+on the iframe itself (.responsive-media__embed). The wrapper has an intrinsic
+ratio  using a padding in percentages which corresponds to the 16:9 ratio of
+the iframe. The wrapper essentially forces  the iframe to recalculate its
+height on every viewport size.; */
 
 .responsive-media {
   position: relative;
@@ -174,6 +200,12 @@ footer p { /* Temporary until I handle the footer's last p. */
 
 
 
+
+
+
+footer p { /* Temporary until I handle the footer's last p. */
+  margin-bottom: 0;
+}
 
 
 
