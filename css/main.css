@@ -88,6 +88,18 @@ With this modifier you can maintain the unified vertical rhythm.
 
   @media (min-width: 768px) {
 
+    .layout__item--two-thirds {
+      width: 66.6%;
+      max-width: max-width: 1280px;
+      margin: 0 auto 1.5rem;
+      background: gold;
+    }
+
+  }
+
+
+  @media (min-width: 768px) {
+
     .layout__item--one-third {
       width: 30%;
       float: left;
@@ -122,7 +134,7 @@ With this modifier you can maintain the unified vertical rhythm.
 
 
 /*------------------------------------*\
-  #TESTIMONIAL STYLES
+  #TESTIMONIAL-STYLES
 \*------------------------------------*/
 
 .testimonial {
@@ -136,6 +148,28 @@ With this modifier you can maintain the unified vertical rhythm.
 
 footer p { /* Temporary until I handle the footer's last p. */
   margin-bottom: 0;
+}
+
+
+
+
+
+/*------------------------------------*\
+  #MEDIA-OBJECT-STYLES
+\*------------------------------------*/
+
+.responsive-media {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+}
+
+.responsive-media__embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 
