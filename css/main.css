@@ -11,18 +11,36 @@ p {
   margin: 0;
 }
 
+
+
+
+
 /*------------------------------------*\
   #LAYOUT-STYLES
 \*------------------------------------*/
 
-/* We use the following classes to create a very basic grid.  The .layout
-element creates a fluid container which is the immediate child of the body.
-Inside that there is two kinds of layout containers: a 100% wide and a 90%
-wide one. The grid is capable of creating a three-column layout. The
-.layout__item--one-third div takes up the 33.3%  of the available space and is
-floated to the left, creating the three-column layout. It is only triggered
-upwards from 768px thanks to a media query. Floats are cleared via a pseudo-
-element and a dedicated class. 
+/*
+We use the following classes to create a very basic grid.
+
+The .layout element creates a fluid container which is the immediate child of
+the body. Inside that there is two kinds of layout containers: a 100% wide and
+a 90% wide one.
+
+The grid is capable of creating a three-column layout. The .layout__item--one-
+third div takes up the 30%  of the available space and is floated to the left,
+creating the three-column layout. It is only triggered upwards from 768px
+thanks to a media query. Floats are cleared via a pseudo- element and a
+dedicated class.
+
+The vertical rhythm is established through a single margin-bottom declaration
+on the .layout__item class. Since this class is present on every grid item, it
+can create a uniform margin spacing.
+
+The three column layout needs gutters. This is solved through margin
+declarations for the first and last column. The width of the columns is
+established as 30%, the remaining 9.9% is divided between a right margin for
+the first and a left margin for the last column. (Note: This could've been
+done way more easier through flexbox with a space-between value.)
 */
 
 .layout {
@@ -31,26 +49,45 @@ element and a dedicated class.
   background: lightblue;
 }
 
+
+  .layout__item {
+    margin-bottom: 1.5rem;
+  }
+
+
   .layout__item--fullwidth {
     width: 100%;
     background: lightgreen;
 
   }
 
+
   .layout__item--ninetenth {
     width: 90%;
-    margin: 0 auto;
+    margin: 0 auto 1.5rem;
     background: lightyellow;
   }
+
 
   @media (min-width: 768px) {
 
     .layout__item--one-third {
-      width: 33.3%;
+      width: 30%;
       float: left;
       overflow: hidden;
       background: rebeccapurple;
     }
+
+    .layout__item--one-third:first-child {
+      margin-right: 4.95%;
+    }
+
+    .layout__item--one-third:last-child {
+      margin-left: 4.95%;
+    }
+
+  }
+
 
   .layout__item--clearfix::after {
     content: "";
@@ -58,4 +95,27 @@ element and a dedicated class.
     display: block;
   }
 
-  }
+
+
+
+
+/*------------------------------------*\
+  #TESTIMONIAL STYLES
+\*------------------------------------*/
+
+.testimonial {
+  width: 100%;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
