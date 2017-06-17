@@ -284,7 +284,7 @@ The margin has to be the same as the height of the header.
 * between the 100px and 100vh states.
 */
 
-.header-main__navigation { /*[3]*/
+.header-main__nav-mobile { /*[3]*/
   background: firebrick;
   position: absolute; /*[4]*/
   top: 0; /*[4]*/
@@ -296,6 +296,23 @@ The margin has to be the same as the height of the header.
   transition: .5s; /*[8]*/
   transition-delay: .5s; /*[8]*/
 }
+
+            @media (min-width: 768px){
+            .header-main__nav-desktop {
+              background: gold;
+              position: absolute;
+              z-index: 6;
+              top: 40px;
+              left: 30%;
+              right: 30%;
+              text-align: center;
+            }
+
+            .header-main__link-desktop {
+              display: inline-block;
+              padding: 0 2%;
+            }
+            }
 
 /**
 * [9] The site's name or logo can live in this
@@ -316,6 +333,12 @@ The margin has to be the same as the height of the header.
   font-size: 20px;
   z-index: 6;
 }
+
+                  @media (min-width: 768px) {
+                    .header-main__sitename {
+                      display: none;
+                    }
+                  }
 
 /**
 * [10] The label will act as one part of the pure
@@ -341,6 +364,12 @@ The margin has to be the same as the height of the header.
   cursor: pointer;
 }
 
+                    @media (min-width: 768px) {
+                    .header-main__hamburger-icon {
+                      display: none;
+                    }
+                  }
+
 /**
 * [11] The icon itself is 3 span elements combined.
 * [12] The position: absolute; positions the spans
@@ -365,6 +394,12 @@ The margin has to be the same as the height of the header.
   background: #000; /*[15]*/
   transition: .5s; /*[16]*/
 }
+
+@media (min-width: 768px) {
+                    .header-main__icon-element {
+                      display: none;
+                    }
+                  }
 
 /**
 * [17] Moves the first span upwards.
@@ -430,7 +465,7 @@ The margin has to be the same as the height of the header.
 *
 */
 
-.header-main__hidden-checkbox:checked ~ .header-main__navigation {
+.header-main__hidden-checkbox:checked ~ .header-main__nav-mobile {
   height: 100vh; /*[22]*/
   transition: .5s;
 }
@@ -464,7 +499,7 @@ The margin has to be the same as the height of the header.
 *
 */
 
-.header-main__link { /*[25]*/
+.header-main__link-mobile { /*[25]*/
   opacity: 0;
   color: #000;
   display: block;
@@ -476,11 +511,11 @@ The margin has to be the same as the height of the header.
   transition: .5s;
 }
 
-.header-main__hidden-checkbox:checked ~ .header-main__navigation > .header-main__link-list {
+.header-main__hidden-checkbox:checked ~ .header-main__nav-mobile > .header-main__link-list {
   top: 35%; /*[24]*/
 }
 
-.header-main__hidden-checkbox:checked ~ .header-main__navigation > .header-main__link-list > .header-main__link { /*[25]*/
+.header-main__hidden-checkbox:checked ~ .header-main__nav-mobile > .header-main__link-list > .header-main__link-mobile { /*[25]*/
   opacity: 1;
   transition-delay: .5s;
 }
