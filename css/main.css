@@ -212,7 +212,7 @@ footer p { /* Temporary until I handle the footer's last p. */
 }
 
 /*------------------------------------*\
-  #COMPONENT-STYLES
+  #MAIN-HEADER-NAV-STYLES
 \*------------------------------------*/
 
 /**
@@ -231,7 +231,7 @@ footer p { /* Temporary until I handle the footer's last p. */
 * other element onto the wrapper with increased
 * indexes.
 * 
-This you have to append to the following element in the DOM, 
+This position-fix you have to append to the following element in the DOM, 
 to prevent the header from overlapping the content.
 The margin has to be the same as the height of the header.
 */
@@ -297,22 +297,38 @@ The margin has to be the same as the height of the header.
   transition-delay: .5s; /*[8]*/
 }
 
-            @media (min-width: 768px){
-            .header-main__nav-desktop {
-              background: gold;
-              position: absolute;
-              z-index: 6;
-              top: 40px;
-              left: 30%;
-              right: 30%;
-              text-align: center;
-            }
+/* This section creates the nav for the desktop site. Its positioned onto the
+mobile nav (which is still acting as backdrop  – this may can be refactored in
+the future. It's arranged to center by positioning, the z-index  ensures that
+it displays on top of the other nav. The media query ensures that it only
+triggers on desktop.   The default display: none state ensure that it won't
+even render on mobile.) 
 
-            .header-main__link-desktop {
-              display: inline-block;
-              padding: 0 2%;
-            }
-            }
+The sitename, the hamburger icon and the mobile link list are hidden  using
+display none and media queries. They can be found alongside their respective
+mobile parts. */
+
+.header-main__nav-desktop {
+  display: none;
+}
+
+@media (min-width: 768px){
+  .header-main__nav-desktop {
+    display: block;
+    background: gold;
+    position: absolute;
+    z-index: 6;
+    top: 40px;
+    left: 30%;
+    right: 30%;
+    text-align: center;
+  }
+
+  .header-main__link-desktop {
+    display: inline-block;
+    padding: 0 2%;
+  }
+}
 
 /**
 * [9] The site's name or logo can live in this
@@ -334,11 +350,15 @@ The margin has to be the same as the height of the header.
   z-index: 6;
 }
 
-                  @media (min-width: 768px) {
-                    .header-main__sitename {
-                      display: none;
-                    }
-                  }
+/* Hides the sitename on desktop. */
+
+@media (min-width: 768px) {
+  
+  .header-main__sitename {
+    display: none;
+  }
+
+}
 
 /**
 * [10] The label will act as one part of the pure
@@ -364,11 +384,15 @@ The margin has to be the same as the height of the header.
   cursor: pointer;
 }
 
-                    @media (min-width: 768px) {
-                    .header-main__hamburger-icon {
-                      display: none;
-                    }
-                  }
+/* Hides the hamburger label on desktop. */
+
+@media (min-width: 768px) {
+  
+  .header-main__hamburger-icon {
+    display: none;
+  }
+
+}
 
 /**
 * [11] The icon itself is 3 span elements combined.
@@ -395,11 +419,15 @@ The margin has to be the same as the height of the header.
   transition: .5s; /*[16]*/
 }
 
+/* Hides the hamburger spans on desktop. */
+
 @media (min-width: 768px) {
-                    .header-main__icon-element {
-                      display: none;
-                    }
-                  }
+  
+  .header-main__icon-element {
+    display: none;
+  }
+
+}
 
 /**
 * [17] Moves the first span upwards.
@@ -490,6 +518,16 @@ The margin has to be the same as the height of the header.
   top: -2000px; /*[24]*/
   left: 20%;
   right: 20%;
+}
+
+/* Hides the mobile links on desktop. */
+
+@media (min-width: 768px) {
+
+  .header-main__link-list {
+    display: none;
+  }
+
 }
 
 /*
