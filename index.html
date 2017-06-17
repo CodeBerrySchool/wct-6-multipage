@@ -16,13 +16,36 @@
 <body>
   <div class="layout">
     
-    <!-- nav will go here -->
-    
-
-
-
 
     <div class="layout__item layout__item--fullwidth">
+    
+      <header class="header-main">
+
+        <h1 class="header-main__sitename">Site Name</h1>
+
+        <input id="burger" type="checkbox" class="header-main__hidden-checkbox">
+
+        <label for="burger" class="header-main__hamburger-icon">
+          <span class="header-main__icon-element header-main__icon-element--first"></span>
+          <span class="header-main__icon-element"></span>
+          <span class="header-main__icon-element header-main__icon-element--last"></span>
+        </label>
+
+        <nav class="header-main__navigation">    
+          <div class="header-main__link-list">
+            <a href="#" class="header-main__link">Link #1</a>
+            <a href="#" class="header-main__link">Link #2</a>
+            <a href="#" class="header-main__link">Link #3</a>
+          </div>
+        </nav>
+
+      </header>
+
+    </div>
+
+
+
+    <div class="layout__item layout__item--fullwidth header-main__position-fix">
      
       <header class="header-secondary header-secondary--small">
         <h1 class="header-secondary__headline">Budapest Buddies</h1>
