@@ -71,7 +71,9 @@ The .layout__item--two-thirds is in a media query. In this case it solves  the
 problem of the responsive embedded iframe that is in a 100% wide container.
 When the screen gets large enough, the query triggers and switches the
 embedded  iframe to a centered 66.6% wide container. For this to work the
-class must be  placed below the full-width class (CSS cascading). 
+class must be  placed below the full-width class (CSS cascading).
+
+The one-fourth creates a 4-column view. Its margin is the same as the 3 column. 
 
 */
 
@@ -133,6 +135,21 @@ class must be  placed below the full-width class (CSS cascading).
 
   }
 
+  @media (min-width: 768px) {
+
+    .layout__item--one-fourth {
+      width: 21.2875%;
+      float: left;
+      overflow: hidden;
+      background: rebeccapurple;
+      margin-right: 4.95%;
+    }
+
+    .layout__item--one-fourth:last-child {
+      margin-right: 0;
+    }
+
+  }
 
   .layout__item--clearfix::after {
     content: "";
@@ -169,6 +186,23 @@ class must be  placed below the full-width class (CSS cascading).
 }
 
   .testimonial__image {
+    width: 100%;
+  }
+
+
+
+
+
+/*------------------------------------*\
+  #TEAM-CARD-STYLES
+\*------------------------------------*/
+
+.team-card {
+  width: 100%;
+  background: lightcoral;
+}
+
+  .team-card__image {
     width: 100%;
   }
 
