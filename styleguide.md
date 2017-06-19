@@ -49,3 +49,4 @@ Notes:
 - layout items have to have a max-width for super big screens
 - reindent everything and add meaningful whitespace upon refactor
 - refactor the 3-column grid based on the four-column grid
+- the map embed is broken so far.. a bigger aspect ratio might help. maybe equal to the video? also it needs an overlay toprevent scrolling.

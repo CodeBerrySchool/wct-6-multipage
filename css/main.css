@@ -220,7 +220,11 @@ method requires a wrapper around the iframe (.responsive-media)  and a class
 on the iframe itself (.responsive-media__embed). The wrapper has an intrinsic
 ratio  using a padding in percentages which corresponds to the 16:9 ratio of
 the iframe. The wrapper essentially forces  the iframe to recalculate its
-height on every viewport size.; */
+height on every viewport size.; 
+
+The videos's aspect ration is 06:9 but that's not suitable for the map embeds
+this is why we have the .responsive-media--map modifier.
+*/
 
 .responsive-media {
   position: relative;
@@ -228,22 +232,22 @@ height on every viewport size.; */
   height: 0;
 }
 
-.responsive-media__embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+.responsive-media--map {
+  padding-bottom: 38.1944%;
 }
 
+  .responsive-media__embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
 
 
 
 
 
-footer p { /* Temporary until I handle the footer's last p. */
-  margin-bottom: 0;
-}
 
 /*------------------------------------*\
   #MAIN-HEADER-NAV-STYLES
@@ -593,6 +597,18 @@ mobile parts. */
 }
 
 
+/* ===================================================== */
+
+footer p { /* Temporary until I handle the footer's last p. */
+  margin-bottom: 0;
+}
+
+.list-test { /* temporary proof of concept. not really working on smaller viewports. */
+  margin: 0 auto;
+  width: 35%;
+  background: rebeccapurple;
+  list-style: none;
+}
 
 
 
