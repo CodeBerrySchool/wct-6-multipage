@@ -50,3 +50,6 @@ Notes:
 - reindent everything and add meaningful whitespace upon refactor
 - refactor the 3-column grid based on the four-column grid
 - the map embed is broken so far.. a bigger aspect ratio might help. maybe equal to the video? also it needs an overlay toprevent scrolling.
+- fix the company data » how to center it without losing text-align? nest in another layout item maybe? » nest it in a div and make the div inline-block » ul buttons can be hidden with padding 0
+- div card: h3 h4 (csak előrébb), ul, li, button, span
+- bodyra kerüljön a font-family
