@@ -601,13 +601,38 @@ mobile parts. */
 
 
 /*------------------------------------*\
+  #NEWSLETTER-SIGNUP-STYLES
+\*------------------------------------*/
+
+/* This rule set extends the vertical rhythm to the inside of the signup form.
+Make sure that you match it with the rhythm dictated by the layout grid  and
+the utilities like general rules for headings and paragraphs. */
+
+.newsletter-signup__email-input {
+  margin-bottom: 1.5rem;
+}
+
+/* Adds space between the button and the disclaimer text.*/
+
+.newsletter-signup__button {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/*------------------------------------*\
   #FOOTER-STYLES
 \*------------------------------------*/
+
+/* This rule set extends the vertical rhythm to the inside of the footer. Make
+sure that you match it with the rhythm dictated by the layout grid  and the
+utilities like general rules for headings and paragraphs. */
 
 .footer-main__nav, 
 .footer-main__social-icon-row {
   margin-bottom: 1.5rem;
 }
+
+/* Strips the extra bottom margin from the last paragraph in the footer. */
 
 .footer-main__copyright {
   margin-bottom: 0;
