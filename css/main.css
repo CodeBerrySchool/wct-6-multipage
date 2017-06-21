@@ -597,11 +597,30 @@ mobile parts. */
 }
 
 
-/* ===================================================== */
 
-footer p { /* Temporary until I handle the footer's last p. */
+
+
+/*------------------------------------*\
+  #FOOTER-STYLES
+\*------------------------------------*/
+
+.footer-main__nav, 
+.footer-main__social-icon-row {
+  margin-bottom: 1.5rem;
+}
+
+.footer-main__copyright {
   margin-bottom: 0;
 }
+
+
+
+
+
+
+/* ===================================================== */
+
+
 
 .list-test { /* temporary proof of concept. not really working on smaller viewports. */
   margin: 0 auto;
