@@ -189,6 +189,12 @@ The one-fourth creates a 4-column view. Its margin is the same as the 3 column.
     width: 100%;
   }
 
+  /* Matches the vertical rhyhthm of the grid and the utilities like
+  paragraphs and headings. */
+  .testimonial__author {
+    margin-bottom: 1.5rem;
+  }
+
 
 
 
