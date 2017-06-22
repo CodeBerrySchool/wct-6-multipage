@@ -256,147 +256,174 @@ this is why we have the .responsive-media--map modifier.
 
 
 /*------------------------------------*\
-  #MAIN-HEADER-NAV-STYLES
+  #MAIN-HEADER-STYLES
 \*------------------------------------*/
 
-/**
-* [1] The .header-main creates an absolutely
-* positioned wrapper that serves as a base
-* for the whole component. Because it is
-* absolutely positioned to the top it defaults
-* to the top of the viewport if you don't use
-* any other wrappers (or a layout grid). But you
-* can include it in a container then it'll adapt
-* its dimensions to its constraints.
-* Note: you can put it inside a fixed container
-* if you want a fixed-to-top navigation.
-*
-* [2] The z-index is there so we can lay every
-* other element onto the wrapper with increased
-* indexes.
-* 
-This position-fix you have to append to the following element in the DOM, 
-to prevent the header from overlapping the content.
-The margin has to be the same as the height of the header.
-*/
+
+/* This section styles the main header element which serves as an omnipresent
+navigational bar. It has two distinct views: a mobile one which is a hamburger
+menu that unfolds to a vertical nav  and a desktop one which houses a
+horizontal navigation. The solution for a responsive nav is a pure CSS one
+that utilizes a hidden checkbox and sibling selectors. When one nav is active,
+the other is turned off using display: none.
+
+The header contains a checkbox input, its label, 3 spans that form the
+animated hamburger icon, (layed on top of the label so it acts as a real
+icon), a mobile nav with an unordered list and anchor elements and a distinct
+desktop nav element with anchors. There are also rule sets for the animations.
+
+The whole header element is self-contained therefore doesn't rely on its
+environment for positioning and styling. You can pick it up and include it in
+any project.
+
+The declarations that are signaled with an exclamation point ([!]) are
+responsible for the cosmetics or positioning of the header or its elements.
+You can change these if you need. */
+
+
+
+
+
+/*---- ##BASE-HEADER-ELEMENT ----*/
+
+
+/* [1] The .header-main creates an absolutely positioned wrapper that serves
+as a base  for the whole component. Because it is  absolutely positioned to
+the top it defaults  to the top of the viewport if you don't use  any other
+wrappers (or a layout grid). But you  can include it in a container and it'll
+adapt  its dimensions to its constraints. Note: you can put it inside a fixed
+container  if you want a fixed-to-top navigation.
+ 
+[2] Its height is adjustable just make sure that you also adjust the
+compensatory top margin on the following element  and reposition the elements
+that rely on this (the mobile nav).
+
+[3] The purpose of the low z-index is to enable the element to work as a
+canvas. We want to lay elements onto it, those will have a higher index. */
+
 
 .header-main { /*[1]*/
   position: absolute;
+  background: #fff; /*[!]*/
   top: 0;
   left: 0;
   width: 100%;
-  height: 100px;
-  z-index: 2; /*[2]*/
-}
-
-.header-main__position-fix {
-  margin-top: 100px;
+  height: 60px; /*[2, !]*/
+  z-index: 2; /*[3]*/
 }
 
 
-/**
-* [3] The navigation element is the one that gives
-* the physical appearance of the component in its
-* closed state. It's positioned onto the
-* .header-main element so it hides it.
-* It will also serve as the dropdown menu. In its
-* closed state it has fix height but when opened
-* it extends to 100vh therefore expanding onto
-* the rest of the page creating the menu.
+/* [4] You have to apply this class to the next element after the header in
+the DOM. By creating a top margin it prevents the header from overlapping the
+content. The margin has to be the same as the height of the header. */
 
-* [4] These properties position the nav relatively
-* to its container, the .header-main. It furthers
-* the elements portability since its independent
-* of its surroundings.
-*
-* [5] The width: 100%; stretches the nav element
-* to fill its container. The fixed height is not
-* a problem when it comes to responsivity
-* since nav heights usually don't change.
-*
-* [6] It has a z-index of 3 which puts it above
-* the .header-main but below the following
-* elements. Thus it creates a canvas for them.
-*
-* [7] The nav will contain links that could
-* potentially overflow the element. This property
-* takes care of that.
-*
-* [8] The transition and transition delay
-* properties are part of the animation structure.
-* They are creating a prolonged, animated switch
-* between the 100px and 100vh states.
-*/
 
-.header-main__nav-mobile { /*[3]*/
-  background: firebrick;
-  position: absolute; /*[4]*/
-  top: 0; /*[4]*/
-  left: 0; /*[4]*/
-  width: 100%; /*[5]*/
-  height: 100px; /*[5]*/
-  z-index: 3; /*[6]*/
-  overflow: hidden; /*[7]*/
-  transition: .5s; /*[8]*/
-  transition-delay: .5s; /*[8]*/
+.header-main__position-fix { /*[4]*/
+  margin-top: 60px;
 }
 
-/* This section creates the nav for the desktop site. Its positioned onto the
-mobile nav (which is still acting as backdrop  – this may can be refactored in
-the future. It's arranged to center by positioning, the z-index  ensures that
-it displays on top of the other nav. The media query ensures that it only
-triggers on desktop.   The default display: none state ensure that it won't
-even render on mobile.) 
 
-The sitename, the hamburger icon and the mobile link list are hidden  using
-display none and media queries. They can be found alongside their respective
-mobile parts. */
 
-.header-main__nav-desktop {
-  display: none;
+
+
+/*---- ##MOBILE-NAV-ELEMENT-CLOSED ----*/
+
+
+/* The .header-main__nav-mobile is a child of the .header__main  and its
+siblings are the site name and the hamburger icon (with its hidden parts). All
+together these form the responsive mobile navigation.
+
+
+It's positioned onto the .header-main element so it hides it. It will also
+serve as the dropdown menu. In its closed state it has fix height but when
+opened it extends to 100vh therefore expanding onto the rest of the page
+creating the canvas for the horizontal menu.
+
+[5] These properties position the nav relatively to its container, the
+.header-main. It furthers the elements portability since its independent of
+its surroundings.
+
+[6] The width: 100%; stretches the nav element to fill its container. The
+fixed height is not a problem when it comes to responsivity since nav heights
+usually don't change.
+
+Note: this height is customizable - if you want to change the height of the
+nav,  do it here. Be aware that you need to change the positioning of the
+other positiones elements and make sure that this height matches the header's.
+
+[7] It has a z-index of 3 which puts it above the .header-main but below the
+following elements. Thus it creates a canvas for them.
+
+[8] This prevents anything from overflowing when the nav is closed.
+
+[9] The transition and transition delay properties are part of the opening /
+closing animations. They are creating a prolonged, animated switch between the
+100px and 100vh states.
+
+Note: This section only styles the nav in its closed state. For the open state, 
+links and animation go down to the "##MOBILE-NAV-ELEMENT-OPEN" sub-section.
+
+Note: when the mobile nav is active, the distinct  desktop nav is off thanks
+to a display: none; declaration.
+
+If you want to alter the height or background color of the mobile nav,  you
+can do it here. If you want to alter the look of the site name (or logo), the
+hamburger icon or the links, look below in the respective sub-sections. */
+
+
+.header-main__nav-mobile {
+  background: #f9d423; /*[!]*/
+  position: absolute; /*[5]*/
+  top: 0; /*[5]*/
+  left: 0; /*[5]*/
+  width: 100%; /*[6]*/
+  height: 60px; /*[6, !]*/
+  z-index: 3; /*[7]*/
+  overflow: hidden; /*[8]*/
+  transition: .5s; /*[9]*/
+  transition-delay: .5s; /*[9]*/
 }
 
-@media (min-width: 768px){
-  .header-main__nav-desktop {
-    display: block;
-    background: gold;
-    position: absolute;
-    z-index: 6;
-    top: 40px;
-    left: 30%;
-    right: 30%;
-    text-align: center;
-  }
 
-  .header-main__link-desktop {
-    display: inline-block;
-    padding: 0 2%;
-  }
-}
 
-/**
-* [9] The site's name or logo can live in this
-* element. It's absolutely positioned to the left
-* side of the header and its z-index puts it to
-* the top of the stack.
-*
-* The font-size is important –it has to match
-* the height of the hamburger icon for us to be
-* able to align it correctly. Also the position
-* from top is determined by the hamburger icon.
-*/
 
-.header-main__sitename { /*[9]*/
+
+/*---- ##MOBILE-SITE-NAME-ELEMENT ----*/
+
+
+/*  The site's name or its logo can be put in this  element. It's absolutely
+positioned to the left side of the header, it's centered vertically and its
+z-index puts it on the top of the stack (above the header and mobile nav).
+
+[10] If you want to alter it, makes sure that the font-size  matches the height of
+the hamburger icon (see below) otherwise you won't be able to align them
+properly.
+
+[11] The transform-translate method centers it vertically perfectly no matter the
+actual size of the element. 
+
+[12] The left: 5%; gives the same gutter as the rest 
+of the grid maintaining uniform alignment. Make sure to adjust this if you
+want to use an element in a different grid.
+
+[13] Its font and color are declared here to promote reusability. */
+
+
+.header-main__sitename { 
   position: absolute;
-  top: 40px;
-  left: 40px;
-  font-size: 20px;
+  top: 50%; /*[11, !]*/
+  left: 5%; /*[12, !]*/
+  transform: translate(0, -50%); /*[11, !]*/
   z-index: 6;
+  font-size: 1.25rem; /* = 20px */ /*[10, !]*/
+  font-family: 'Lobster', cursive; /*[13, !]*/
+  color: #fff; /*[13, !]*/
 }
 
-/* Hides the sitename on desktop. */
+/* [14] Because the site name is part of the mobile nav it needs to be turned
+off on desktops. */
 
-@media (min-width: 768px) {
+@media (min-width: 768px) { /*[14]*/
   
   .header-main__sitename {
     display: none;
@@ -404,23 +431,57 @@ mobile parts. */
 
 }
 
-/**
-* [10] The label will act as one part of the pure
-* CSS hamburger icon. This will be the clickable
-* box. Its positioned to the top right corner
-* on the same line as the h1. Its height
-* is matched to the height of the h1 and
-* the z-index is lower by one. The reason:
-* we want the spans to sit on top of this label.
-*
-*/
 
-.header-main__hamburger-icon { /*[10]*/
+
+
+
+/*---- ##HAMBUGER-ICON-ELEMENT ----*/
+
+
+/* This hamburger icon consists of 3 parts: a checkbox, its associated  label
+and 3 spans. The checkbox is hidden behind the header, the label  is
+positioned where the icon would be. The user essentially clicks the  label and
+that changes the state of the checkbox. (The checkbox itself is not styled
+just tucked away behind the header and hidden on desktop with display: none.)
+
+Because the label in  itself is invisible we would need an actual hamburger
+icon. This is solved  by 3 span elements that are positioned over the label
+and styled so they  appear as the elements of the hamburger icon.
+
+For added visual flair the spans change their state when clicked to form  an
+X. This transition is animated.
+
+The click on the checkbox switches between the two states of the mobile  nav
+(using sibling selectors): the X px and the 100vh one. 
+
+Note: Every part of the hamburger icon is hidden on desktop using display: none 
+to prevent accidental activation and spare unnecessary rendering. */
+
+
+
+
+
+/*-- ###HAMBUGER-ICON-ELEMENT:LABEL --*/
+
+
+/* [15] The label will act as one part out of three of the pure CSS hamburger
+icon. This will be the clickable box. Its positioned to right  on the same
+line as the h1 (site name). Its height is matched to the height of the h1 and
+the z-index is lower by one. The reason: we want the spans to sit on top of
+this label. Its vertical centering is solved by transform-translate and the
+right margin is matched to the other gutters of the layout grid.
+
+[16] Note: when you customize this icon you have to change the right margin to
+match your grid's gutters.  Also, don't forget to match its height to the
+height of the site name. You can change the width if you wish. */
+
+.header-main__hamburger-icon { /*[15]*/
   position: absolute;
-  top: 40px;
-  right: 40px;
-  height: 20px;
-  width: 15px;
+  top: 50%;
+  right: 5%; /*[16, !]*/
+  transform: translate(0, -50%);
+  height: 1.25rem; /* = 20px */ /*[16, !]*/
+  width: 1rem; /* = 16px */ /*[16, !]*/
   z-index: 5;
 }
 
@@ -428,44 +489,60 @@ mobile parts. */
   cursor: pointer;
 }
 
-/* Hides the hamburger label on desktop. */
+/* [17] This media query hides the hamburger label and checkbox on desktop. */
 
-@media (min-width: 768px) {
+@media (min-width: 768px) { /*[17]*/
   
   .header-main__hamburger-icon {
     display: none;
   }
 
+  .header-main__hidden-checkbox {
+    display: none;
+  }
+
 }
 
-/**
-* [11] The icon itself is 3 span elements combined.
-* [12] The position: absolute; positions the spans
-* relative to their parent, the label element.
-* [13] Their width is the same as the containing
-* label's.
-* [14] Their z-index is the same as the h1's.
-* [15] The block / height / background trio creates
-* the lines themselves.
-* [16] The transition property will become useful
-* later when we want to animate the icon.
-*/
 
-.header-main__icon-element { /*[11]*/
-  display: block; /*[15]*/
-  position: absolute; /*[12]*/
-  top: 50%; /*[12]*/
-  left: 0; /*[12]*/
-  width: 100%; /*[13]*/
-  height: 2px; /*[15]*/
-  z-index: 6; /*[14]*/
-  background: #000; /*[15]*/
-  transition: .5s; /*[16]*/
+
+
+
+/*-- ###HAMBUGER-ICON-ELEMENT:SPANS --*/
+
+
+/* [18] The icon itself is 3 span elements combined. Each span is styled the
+same (essentially a dash) and positioned to the same point then the first and
+the last ones are moved to form the icon.
+
+[19] The position: absolute; positions the spans relative to their parent, the
+label element.
+
+[20] Their width is the same as the containing label's.
+
+[21] Their z-index is the same as the h1's.
+
+[22] The display: block, / height / background trio creates the dashes
+themselves. 
+
+[23] The transition property will become useful later when we want
+to animate the icon. */
+
+.header-main__icon-element { /*[18]*/
+  display: block; /*[22]*/
+  position: absolute; /*[19]*/
+  top: 50%; /*[19]*/
+  left: 0; /*[19]*/
+  width: 100%; /*[20]*/
+  height: 2px; /*[22, !]*/
+  z-index: 6; /*[21]*/
+  background: #fff; /*[22, !]*/
+  transition: .5s; /*[23, !]*/
 }
 
-/* Hides the hamburger spans on desktop. */
 
-@media (min-width: 768px) {
+/* [24] Hides the hamburger spans on desktop. */
+
+@media (min-width: 768px) { /*[24]*/
   
   .header-main__icon-element {
     display: none;
@@ -473,100 +550,119 @@ mobile parts. */
 
 }
 
-/**
-* [17] Moves the first span upwards.
-* [18] Moves the last span downwards. These two
-* form the hamburger icon itself.
-*
-* The spacing between the lines is even.
-*
-*/
 
-.header-main__icon-element--first { /*[17]*/
+/* [25] Moves the first span upwards.
+
+[26] Moves the last span downwards. These two form the hamburger icon itself.
+
+The spacing between the dashes is even. */
+
+.header-main__icon-element:first-child { /*[25, !]*/
   top: 25%;
 }
 
-.header-main__icon-element--last { /*[18]*/
+.header-main__icon-element:last-child { /*[26, !]*/
   top: 75%;
 }
 
-/**
-* This is the where things get interesting. :)
-* We want the hamburger to transform to an X when
-* clicked then transform back. The code below does
-* just that by manipulating the span elements.
-*
-* [19] Brings all the spans to the center of the
-* label and hides them with opacity:0;
-* [20] Turns back the opacity of the first span,
-* spins it around using rotate and stops it
-* in a 45 degree angle.
-* [21] Does the same for the last span but spins
-* it in the opposite direction.
-* [16] The transition: .5s; on the original spans
-* gives the hamburger a nice animated effect.
-*
-*/
 
-.header-main__hidden-checkbox:checked + .header-main__hamburger-icon .header-main__icon-element { /*[19]*/
+
+
+
+/*-- ###HAMBUGER-ICON-ELEMENT:ANIMATION --*/
+
+
+/* This is the where things get interesting. :) We want the hamburger to
+transform to an X when clicked then transform back. The code below does just
+that by manipulating the span elements. (This concludes the hamburger icon
+itself.)
+
+[27] Brings all the spans to the center of the label and hides them with
+opacity:0;
+
+[28] Turns back the opacity of the first span, spins it around using rotate
+and stops it in a 45 degree angle.
+
+[29] Does the same for the last span but spins it in the opposite direction.
+
+The transition: .5s; on the original spans gives the hamburger a nice animated
+effect. */
+
+.header-main__hidden-checkbox:checked + .header-main__hamburger-icon .header-main__icon-element { /*[27]*/
   opacity: 0;
   top: 50%;
 }
 
-.header-main__hidden-checkbox:checked + .header-main__hamburger-icon .header-main__icon-element--first { /*[20]*/
+.header-main__hidden-checkbox:checked + .header-main__hamburger-icon .header-main__icon-element:first-child { /*[28]*/
   opacity: 1;
   transform: rotate(405deg);
 }
 
-.header-main__hidden-checkbox:checked + .header-main__hamburger-icon .header-main__icon-element--last { /*[21]*/
+.header-main__hidden-checkbox:checked + .header-main__hamburger-icon .header-main__icon-element:last-child { /*[29]*/
   opacity: 1;
   transform: rotate(-405deg);
 }
 
-/**
-* Now we have a working hamburger menu, time to define what will happen once it's clicked.
-* We want the nav to extend itself to the full *height of the viewport and display its links.
-*
-* [22] This simple height property extends the nav.
-* Don't forget that the block that displays the
-* headline and the hamburger _is the nav_.
-* Everything is positioned on top of it. It has
-* a 100px height by default which will be overriden
-* once the user clicks the menu icon. This is
-* why it has a lower z-index than everything else.
-*
-*/
+
+
+
+
+/*---- ##MOBILE-NAV-ELEMENT-OPEN ----*/
+
+
+/* Up until this point we have the closed mobile nav in place with the site
+name and working hamburger icon. The next section styles the mobile nav in its
+open state (checkbox checked) its links and adds further animations to the
+component.
+
+[30] This height property extends the mobile nav element to fill the entire
+height of the viewport once the checkbox is checked.
+
+Don't forget that the block that displays the site name and the hamburger _is
+the mobile nav_. Everything is positioned on top of it. It has a 100px height
+by default which will be overriden once the user clicks the menu icon. */
 
 .header-main__hidden-checkbox:checked ~ .header-main__nav-mobile {
-  height: 100vh; /*[22]*/
+  height: 100vh; /*[30]*/
   transition: .5s;
 }
 
-/*
-* [23] The link list needs to be moved down to
-* the center of the open full-height nav.
-* We solve this by a position absolute
-* which arranges the list relative to the nav.
-* 
-* [24] The .header-main__link-list is positioned
-* outside of the viewport in closed stance to
-* solve the bug where there was an invisible but
-* clickable box which could freeze the whole nav.
-* It's positioned correctly when the checkbox is 
-* clicked.
-* 
-*/
 
-.header-main__link-list { /*[23]*/
+
+
+
+/*-- ###MOBILE-NAV-ELEMENT-OPEN:LINK-LIST --*/
+
+
+/* This link list contains the mobile navigation links. By default it's
+positioned  way outside the viewport and its contents are hidden with an
+opacity: 0; property.
+
+When the user clicks the checkbox the box floats back inside the viewport,
+positioned on top of the center of the extended mobile nav and its links
+appear.
+
+[31] The .header-main__link-list is positioned outside of the viewport in
+closed stance to solve the bug where there was an invisible but clickable box
+which could freeze the whole nav. It's positioned to the center when the
+checkbox is clicked. */
+
+.header-main__link-list {
   position: absolute;
-  top: -2000px; /*[24]*/
-  left: 20%;
-  right: 20%;
+  top: -2000px; /*[31]*/
+  left: 5%;
+  right: 5%;
 }
 
-/* Hides the mobile links on desktop. */
+.header-main__hidden-checkbox:checked ~ .header-main__nav-mobile > .header-main__link-list {
+  top: 50%; /*[24]*/
+  transform: translate(0, -50%);
+}
 
-@media (min-width: 768px) {
+
+/* [32] Hides the link list and its contents on desktop. */
+
+@media (min-width: 768px) { /*[32]*/
 
   .header-main__link-list {
     display: none;
@@ -574,34 +670,128 @@ mobile parts. */
 
 }
 
-/*
-* [25] The links are hidden by default then
-* when the checkbox is ticked their opacity
-* is set to 1 with a delayed transition.
-*
-*/
 
-.header-main__link-mobile { /*[25]*/
-  opacity: 0;
-  color: #000;
+
+
+
+/*-- ###MOBILE-NAV-ELEMENT-OPEN:LINKS --*/
+
+
+/* [33] The links are hidden by default then when the checkbox is ticked their
+opacity is set to 1 with a delayed transition. The rest of the code is
+cosmetic. */
+
+.header-main__link-mobile { 
+  opacity: 0; /*[33]*/
+  color: #fff; /*[!]*/
   display: block;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-family: sans-serif;
-  padding: 30px;
-  transition: .5s;
+  text-align: center; /*[!]*/
+  text-decoration: none; /*[!]*/
+  text-transform: uppercase; /*[!]*/
+  font-family: 'Open Sans', sans-serif; /*[!]*/
+  font-size: 1.25rem; /*[!]*/
+  padding: 1.875rem; /*[!]*/
+  border-bottom: 1px solid #fff; /*[!]*/
+  transition: .5s; /*[33]*/
 }
 
-.header-main__hidden-checkbox:checked ~ .header-main__nav-mobile > .header-main__link-list {
-  top: 35%; /*[24]*/
+.header-main__link-mobile:first-child {
+  border-top: 1px solid #fff; /*[!]*/
 }
 
 .header-main__hidden-checkbox:checked ~ .header-main__nav-mobile > .header-main__link-list > .header-main__link-mobile { /*[25]*/
-  opacity: 1;
-  transition-delay: .5s;
+  opacity: 1; /*[33]*/
+  transition-delay: .5s; /*[33]*/
 }
 
+
+
+
+
+/*---- ##DESKTOP-NAV-ELEMENT ----*/
+
+
+/* On desktop a new nav element triggers while the mobile navigation and its
+associated elements (the hamburger icon, checkbox and site name) are turned
+off by a display: none; property.
+
+The desktop nav is positioned to the center of the header element and
+displays its links inline. It is turned off on mobile. 
+
+It consists of a nav element and anchor elements inside it. */
+
+.header-main__nav-desktop {
+  display: none;
+}
+
+
+@media (min-width: 768px){
+  
+  .header-main__nav-mobile {
+    display: none;
+  }
+
+
+  /* [34] The high z-index display this nav on top of the header element.
+
+  [35] The transform-translate method centers the nav element vertically.
+
+  [36] The right-left positions center it horizontally and they fit into the
+  grid. Make sure to revise these values if you use the nav in a different
+  grid with different gutters.
+
+  [37] The text-align property will center the links inside the nav element. */
+
+  .header-main__nav-desktop {
+    display: block;
+    position: absolute;
+    z-index: 6; /*[34]*/
+    top: 50%; /*[35]*/
+    transform: translate(0, -50%); /*[35]*/
+    right: 5%; /*[36, !]*/
+    left: 5%; /*[36, !]*/
+    text-align: center; /*[37, !]*/
+  }
+
+
+    /* [38] This allows the links to accept box model properties.
+
+    [39] Adds margin between the nav links. The last one will be negated by a
+    :last-child pseudoselector.
+
+    The rest is cosmetic. */
+
+    .header-main__link-desktop {
+      display: inline-block; /*[38]*/
+      margin-right: 3rem; /*[39, !]*/
+      text-decoration: none; /*[!]*/
+      text-transform: uppercase; /*[!]*/
+      font-weight: bold; /*[!]*/
+      color: #f9d423; /*[!]*/
+      font-family: 'Open Sans', sans-serif; /*[!]*/
+    }
+
+    .header-main__link-desktop:last-child {
+      margin-right: 0;
+    }
+
+    .header-main__link-desktop:hover {
+      color: #ede574; /*[!]*/
+      transition: .5s; /*[!]*/
+    }
+
+
+    /* [40] This is a custom design that puts a styled site name in the center
+    of the nav links that also acts as a home link. */
+
+    .header-main__link-desktop--sitename { /*[40]*/
+      font-family: 'Lobster', cursive; /*[!]*/
+      font-size: 1.5rem; /*[!]*/
+      text-transform: none; /*[!]*/
+      font-weight: normal; /*[!]*/
+    }
+
+}
 
 
 
