@@ -53,3 +53,4 @@ Notes:
 - fix the company data » how to center it without losing text-align? nest in another layout item maybe? » nest it in a div and make the div inline-block » ul buttons can be hidden with padding 0
 - div card: h3 h4 (csak előrébb), ul, li, button, span
 - bodyra kerüljön a font-family
+- link together pages in navs
