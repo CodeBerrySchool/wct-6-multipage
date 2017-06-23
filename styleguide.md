@@ -26,23 +26,6 @@ Entities should be open for extension but closed for modification.
 Should text be its own block? 
 Nope, it's not BEM-like. The resetting is harder this way but it will be solved by using preprocessors.
 
-Blocks
-
-.layout
-  .layout__item
-      .layout__item--fullwidth
-      .layout__item--ninetycentered
-
-.nav-primary
-
-.header
-  .header--primary
-
-.sub-heading
-
-.button
-  .button--secondary
-  .button--large
 
 Notes:
 - rename .layout-item as .layout-row and layout-item--* as layout-column-*?
@@ -54,3 +37,7 @@ Notes:
 - div card: h3 h4 (csak előrébb), ul, li, button, span
 - bodyra kerüljön a font-family
 - link together pages in navs
+- buttons need a hove and a click state
+- the placeholder text is badly positioned. how to add padding-left?
+- link in mailchimp somehow?
+- is it okay to have a fixed width / height for buttons?

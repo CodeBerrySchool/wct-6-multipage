@@ -187,6 +187,46 @@ The one-fourth creates a 4-column view. Its margin is the same as the 3 column.
   }
 
 
+
+
+/*------------------------------------*\
+  #BUTTON-STYLES
+\*------------------------------------*/
+
+
+.button {
+  display: inline-block;
+  width: 15.46875rem; 
+  height: 2.8125rem;
+  box-shadow: 0px 4px 4px rgba(0,0,0, .25);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.125rem;
+  text-align: center;
+}
+
+.button--small {
+  width: 7.8125rem;
+}
+
+.button--cta-primary {
+  /* primary color*/
+}
+
+.button--cta-secondary {
+  /* secondary color*/
+}
+
+.button--signup {
+  background: #bacc14;
+  color: #27ae60;
+}
+
+
+
+
+
+
+
 /*------------------------------------*\
   #TESTIMONIAL-STYLES
 \*------------------------------------*/
@@ -811,20 +851,93 @@ It consists of a nav element and anchor elements inside it. */
   #NEWSLETTER-SIGNUP-STYLES
 \*------------------------------------*/
 
-/* This rule set extends the vertical rhythm to the inside of the signup form.
-Make sure that you match it with the rhythm dictated by the layout grid  and
-the utilities like general rules for headings and paragraphs. */
 
-.newsletter-signup__email-input {
-  margin-bottom: 1.5rem;
+/* Independent component. It has its own color properties and internal layout
+but most of its styling adapts to its environment.
+
+It inherits fonts from the utilities (h2 and p) along with font-sizes, button
+styles from the separate button components and external layout (relationship
+to other components) from the layout grid.
+
+If you want to change its internal layout or colors, you can do so here, for
+everything else, go to the aforementioned sections. */
+
+
+
+
+
+/* [1] Sets the background color, feel free to change it to fit your needs.
+
+[2] Most of the elements (with the exception of the submit button) can be
+aligned horizontally with this property.  */
+
+.newsletter-signup {
+  background: #f9d423; /*[1, !]*/
+  text-align: center; /*[2]*/
 }
 
-/* Adds space between the button and the disclaimer text.*/
+  
+  /* [3] We need a whitespace on top of the heading that conforms to the
+  layout grid's vertical rhythm. Because of the margin collapsing we can
+  execute this using a padding-top property. Make sure to match this value to
+  whatever vertical rhythm you're using. */
 
-.newsletter-signup__button {
-  display: block;
-  margin-bottom: 1rem;
-}
+  .newsletter-signup__heading { 
+    color: #fff; /*[!]*/
+    padding-top: 1.5rem; /*[3]*/
+  }
+
+
+  /* [4] The email input field is totally stripped of its default styling, has
+  a new background color, a fixed width and height that matches the values on
+  the default button component (to align them properly) and a margin-bottom
+  value to preserve the vertical rhythm of the page.
+
+  Note: Make sure to update its dimensions and margin if you use a different
+  grid /  buttons. */
+
+  .newsletter-signup__email-input { /*[4]*/
+    background: #f2f2f2; /*[!]*/
+    margin-bottom: 1.5rem; 
+    width: 15.46875rem;
+    height: 2.8125rem; 
+    border: none;
+  }
+
+
+  /* These styles are specific to this particulat submit button and its
+  position in the component.
+
+  [5] This allows the button to move to a new line therefore be positioned
+  below its corresponding input field.
+
+  [6] The border: none; declaration negates the default styling of the inout
+  field.
+
+  [7] The margin declaration centers the element horizontally and adds a bit
+  of whitespace below it.
+
+  For the rest of its styles (dimensions, color, typography etc.) go to the
+  Buttons section.  */
+
+  .newsletter-signup__button {
+    display: block; /*[5]*/
+    border: none; /*[6]*/
+    margin: 0 auto 1rem; /*[7]*/
+  }
+
+
+  /* [8] Adds whitespace to the bottom to preserve the vertical rhythm. Make sure
+  to match its value   to your particular grid. */
+
+  .newsletter-signup__disclaimer {
+    color: #f2f2f2; /*[!]*/
+    padding-bottom: 1.5rem; /*[8]*/
+  }
+
+  
+
+
 
 /*------------------------------------*\
   #FOOTER-MAIN-STYLES
@@ -844,7 +957,7 @@ are contained in this section. */
 
 .footer-main {
   text-align: center; /*[1]*/
-  background: #fff; /* helper, will remove when grid backgrounds are removed. */
+  background: #fff;
 }
 
 
