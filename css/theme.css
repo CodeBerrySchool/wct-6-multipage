@@ -38,3 +38,73 @@
     font-size: .75rem;
   }
 
+
+
+
+
+/*------------------------------------*\
+  #COMPANY-DATA-THEME-MODIFIERS
+\*------------------------------------*/
+
+
+/* This section styles the unordered list that contains the company
+information on the contact page. It has no base component because its a unique
+element on the page with no reusable part.
+
+Almost every styling can be found here with the following exceptions: the
+horizontal centering (done via  layout grid's "--centered" modifier), the
+vertical rhythm (layout grid helper classes and line height utility), the
+strong lettering (utility class) and the negated margins (grid utility).
+
+[1] These strip the unordered list of its default styling.
+
+[2] The inline-block display mode ensures that the list only takes up the
+ space necessary for its content, thus allowing the centering.
+
+[3] Overrides the centering but just inside the list items. */
+
+.company-data {
+  list-style-type: none; /*[1]*/
+  padding: 0; /*[1]*/
+  display: inline-block; /*[2]*/
+}
+
+  .company-data__list-item {
+    text-align: left; /*[3]*/
+  }
+
+
+
+
+
+/*------------------------------------*\
+  #INLINE-LINKS-THEME-MODIFIERS
+\*------------------------------------*/
+
+
+/* Styles the simple inline anchor elements on the page. */
+
+.inline-link {
+  color: #333;
+  text-decoration: none;
+}
+
+.inline-link:hover {
+  color: #bdbdbd;
+  transition: .5s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

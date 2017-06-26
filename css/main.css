@@ -18,7 +18,8 @@ body {
 These helpers nullify that so it won't interfere with the grid. */
 
 h1, h2,
-p {
+p,
+ul {
   margin: 0;
 }
 
@@ -36,6 +37,8 @@ h2 {
   font-weight: 700;
   color: #bdbdbd;
 }
+
+
 
 
 /*------------------------------------*\
