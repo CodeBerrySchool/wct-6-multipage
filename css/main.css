@@ -24,7 +24,7 @@ p {
 /* This rule set extends the uniform vertical rhythm to the headings and
 paragraphs. Not sure if  it belongs here or to the layout grid.  */
 
-h1, h2,
+h2,
 p {
   margin-bottom: 1.5rem;
 }
@@ -224,6 +224,10 @@ fine until the font-size of the button and its content doesn't change. But if
 either of those  happen, you need to re-calculate these paddings or find
 another solution.
 
+[3] The normal font-weight is there to override any contextual properties.
+E.g. in the main header everything is bold. If this property'd be omitted,
+the button's text would appear bold as well.
+
 The rest of the styles are cosmetic and rather self-explanatory. */
 
 .button {
@@ -232,6 +236,7 @@ The rest of the styles are cosmetic and rather self-explanatory. */
   box-shadow: 0px 4px 4px rgba(0,0,0, .25); /*[!]*/
   font-family: 'Open Sans', sans-serif; /*[!]*/
   font-size: 1.125rem; /*[!]*/
+  font-weight: 400; /*[3, !]*/
   text-align: center; 
   text-decoration: none;
 }
@@ -893,6 +898,162 @@ It consists of a nav element and anchor elements inside it. */
     }
 
 }
+
+
+
+
+
+/*------------------------------------*\
+  #SECONDARY-HEADER-STYLES
+\*------------------------------------*/
+
+
+/* This section styles the cover headers on each page. The base is the smaller
+header seen on the pricing, team etc. pages. The main header is extended from
+those with the  help of modifiers.
+
+Structure: First we style the base secondary header, positioned the headline
+on it  then add a background image. Then take all this and extend it to fit
+the main header. */
+
+
+
+
+
+/*---- ##SECONDARY-HEADER-BASE-ELEMENT ----*/
+
+
+/* [1] The base is a <header> element. It's designed to take up 22% of the
+viewport based on the initial mockup's dimensions.
+
+[2] It has a position: relative value – its purpose is to allow us to center
+the content vertically and horizontally with the transform/translate method.
+It also has a text-align center that is specific to this project.
+
+[3] You can set the base font-family, font-weight and color here. For font-
+sizes look up the "headline" classes below. The background images are set
+through modifiers below. */
+
+.header-secondary {
+  min-height: 22vh; /*[1, !]*/
+  position: relative; /*[2]*/
+  text-align: center; /*[2, !]*/
+  font-family: 'Open Sans', sans-serif; /*[3, !]*/
+  font-weight: 700; /*[3, !]*/
+  color: #fff; /*[3, !]*/
+}
+
+  
+  /*-- ###SECONDARY-HEADER-BASE-ELEMENT:CONTENT --*/
+
+
+  /* [4] These selectors and rules position the content of the headers and set
+  the font-size for headlines on the smaller secondary headers. They are
+  chained together in the name of DRY code.
+
+  [5] The position: absolute allows us to position the headline on the header.
+
+  [6] The top: 50% value used with the transform/translate method centers
+  the content vertically, while the left/right values (in conjuction with
+  text-align center above) are responsible for the horizontal centering. The
+  latter values fit in with the gutters defined in our grid. Feel free to adjust
+  them if you use different gutters. Note: Why not transform/translate the
+  horizontal values too? If we would use a mere left: 50%, it would create a
+  tight box for the text that would break our layout. This left/right method
+  allows the text to stretch across the header.
+
+  [7] This is the font-size for the mobile view on the smaller headers. For
+  the main header look at its dedicated section. */
+
+  .header-secondary__content,
+  .header-secondary__headline { /*[4]*/
+    position: absolute; /*[5]*/
+    top: 50%; /*[6]*/
+    left: 5%; /*[6]*/
+    right: 5%; /*[6]*/
+    transform: translate(0, -50%); /*[6]*/
+    font-size: 1.9rem; /*[7, !]*/
+  }
+
+  /* [8] A bigger font-size for bigger screens. */
+
+  @media (min-width: 768px) { 
+
+    .header-secondary__headline {
+      font-size: 3.625rem; /*[8, !]*/
+    }
+
+  }
+
+
+/*-- ###SECONDARY-HEADER-BASE-ELEMENT:BACKGROUNDS --*/
+
+
+/* These are the different background pictures used in the headers. Some of
+them have vertical positioning, using percentages. */
+
+.header-secondary--pricing {
+  background: url('../assets/bb-cover-pricing-blur.jpg') no-repeat center 85%/cover;
+}
+
+.header-secondary--team {
+  background: url('../assets/bb-cover-team-blur.jpg') no-repeat center 95%/cover;
+}
+
+.header-secondary--contact {
+  background: url('../assets/bb-cover-contact-blur.jpg') no-repeat center 65%/cover;
+}
+
+.header-secondary--faq {
+  background: url('../assets/bb-cover-faq-blur.jpg') no-repeat center/cover;
+}
+
+
+
+
+
+/*-- ###SECONDARY-HEADER-BASE-ELEMENT:MAIN-MODIFIER --*/
+
+
+/* This section contains the modifiers for the main header which is bigger
+than its siblings,  and has a tagline and a button beside the main headline.
+
+You can find almost all the styles here, except for the p element's margin
+(that comes from  the utilities) and the button which comes from the button
+component.
+
+The main header has an adjusted height and font-sizes. One other difference
+that it has a content wrapper that contains all its elements. It's that
+wrapper what's positioned, not the elements themselves. You can find the
+wrapper  above in the base section.*/
+
+.header-secondary--main {
+  background: url('../assets/bb-cover-main-blur.jpg') no-repeat center 35%/cover;
+  min-height: 62vh;
+}
+
+  .header-secondary__headline--main {
+    margin-bottom: 1.5rem;
+    font-size: 2.25rem;
+  }
+
+  .header-secondary__tagline--main {
+    font-size: 1.125rem;
+    font-weight: normal;  
+  }
+
+  @media (min-width: 768px) {
+
+    .header-secondary__headline--main {
+      font-size: 4rem;
+    }
+
+    .header-secondary__tagline--main {
+      font-size: 1.5rem;
+    }
+
+  }
+
 
 
 
