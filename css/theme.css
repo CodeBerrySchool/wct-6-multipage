@@ -1,0 +1,40 @@
+/*------------------------------------*\
+  #TESTIMONIAL-THEME-MODIFIERS
+\*------------------------------------*/
+
+
+/* These styles extend the base testimonial component in FIXME.css.
+
+[1] Aligns the content horizontally. */
+
+.testimonial {
+  text-align: center; /*[1]*/
+  background: lightcoral; /* Temporary helper style. */
+}
+
+  /* [2] Overrides the default 100% width defined in the base component.
+
+  [3] Makes the image rounded.
+
+  The rest of the styles are cosmetic and self-explanatory. Feel free to change
+  them  to fit your theme. */
+
+  .testimonial__image {
+    width: 12.5rem; /*[2]*/
+    border-radius: 50%; /*[3]*/
+  }
+
+  .testimonial__author,
+  .testimonial__location {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .testimonial__author {
+    font-size: 1.125rem; 
+    text-transform: uppercase;
+  }
+
+  .testimonial__location {
+    font-size: .75rem;
+  }
+

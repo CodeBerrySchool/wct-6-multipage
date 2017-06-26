@@ -9,6 +9,7 @@
 body {
   color: #333;
   font-family: 'Gentium Basic', serif;
+  line-height: 1.5;
 }
 
 
@@ -85,6 +86,8 @@ embedded  iframe to a centered 66.6% wide container. For this to work the
 class must be  placed below the full-width class (CSS cascading).
 
 The one-fourth creates a 4-column view. Its margin is the same as the 3 column. 
+
+The layout__item--centered modifier centers text-based elements in a container.
 
 */
 
@@ -186,6 +189,9 @@ The one-fourth creates a 4-column view. Its margin is the same as the 3 column.
     margin-bottom: 0;
   }
 
+  .layout__item--centered {
+    text-align: center;
+  }
 
 
 
@@ -278,28 +284,25 @@ The rest of the styles are cosmetic and rather self-explanatory. */
 
 
 
-
-
-
-
 /*------------------------------------*\
   #TESTIMONIAL-STYLES
 \*------------------------------------*/
 
-.testimonial {
+
+/* This section contains the base styles of the testimonial component. It is
+extended in the theme.css file with theme-specific modifiers.
+
+The p element's bottom margin comes from the layout grid's utilities and the
+line height is set by the global body element declaration in utilities. 
+
+[1] Adds a bottom margin that conforms to the vertical rhythm defined in the
+layout grid. If you want to use a different rhythm, make sure to adapt this. */
+
+
+.testimonial__image {
   width: 100%;
-  background: lightcoral;
+  margin-bottom: 1.5rem; /*[1]*/
 }
-
-  .testimonial__image {
-    width: 100%;
-  }
-
-  /* Matches the vertical rhyhthm of the grid and the utilities like
-  paragraphs and headings. */
-  .testimonial__author {
-    margin-bottom: 1.5rem;
-  }
 
 
 

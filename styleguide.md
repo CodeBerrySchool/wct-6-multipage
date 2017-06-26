@@ -41,3 +41,6 @@ Notes:
 - the placeholder text is badly positioned. how to add padding-left?
 - link in mailchimp somehow?
 - is it okay to have a fixed width / height for buttons?
+- add the vertical rhythm utilities to the layout grid, it's logical to be there. Round up every place that extends the vertical rhythm. Include in the layout grid comments.
+- Switch to layout centering everywhere.
+- The separation will not be perfect. In the reused components the base structure and theme will be more muddled. In this project this is not a problem but if we would want to bring along these components we should refactor everything to the theme.css that has a ! mark.
