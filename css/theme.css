@@ -1,4 +1,25 @@
 /*------------------------------------*\
+  #INLINE-LINKS-THEME-MODIFIERS
+\*------------------------------------*/
+
+
+/* Styles the simple inline anchor elements on the page. */
+
+.inline-link {
+  color: #333;
+  text-decoration: none;
+}
+
+.inline-link:hover {
+  color: #bdbdbd;
+  transition: .5s;
+}
+
+
+
+
+
+/*------------------------------------*\
   #TESTIMONIAL-THEME-MODIFIERS
 \*------------------------------------*/
 
@@ -78,26 +99,17 @@ strong lettering (utility class) and the negated margins (grid utility).
 
 
 /*------------------------------------*\
-  #INLINE-LINKS-THEME-MODIFIERS
+  #FAQ-THEME-MODIFIERS
 \*------------------------------------*/
 
 
-/* Styles the simple inline anchor elements on the page. */
+/* This section adds some custom styling through the question class to  the
+FAQ page. It decreases the distance between questions and answers  by
+overriding the default vertical rhythm. */
 
-.inline-link {
-  color: #333;
-  text-decoration: none;
+.question {
+  margin-bottom: .5rem;
 }
-
-.inline-link:hover {
-  color: #bdbdbd;
-  transition: .5s;
-}
-
-
-
-
-
 
 
 
