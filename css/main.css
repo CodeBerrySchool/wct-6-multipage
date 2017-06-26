@@ -194,32 +194,82 @@ The one-fourth creates a 4-column view. Its margin is the same as the 3 column.
 \*------------------------------------*/
 
 
+/* This section contains styles for all button components. If you want to
+change the color, dimensions typography, hover or active states of the
+buttons, you can do so here.
+
+How buttons build up: there is a base .button class which contains everything
+except for specific  color schemes. Modifiers give those colors. If you need a
+smaller button, there is a modifier for  that too.
+
+Note: the newsletter signup form's button has some specific styling because of
+its placement and because its a <button> not an anchor tag. You can find those
+in the newsletters signup form section. */
+
+
+
+
+
+/*---- ##BUTTON-BASE-ELEMENT ----*/
+
+
+/* [1] Allows the element to accept box model values.
+
+[2] Creates space on every side of the button text to make it more like a
+button. The exact values are a bit of a hack. The design needs a specific
+width and height for the button but those are a bit tricky with anchor
+elements. As a semi-hacky solution, we calculated the exact paddings needed
+from the calculated width of the text using the  Chrome Inspector. This is
+fine until the font-size of the button and its content doesn't change. But if
+either of those  happen, you need to re-calculate these paddings or find
+another solution.
+
+The rest of the styles are cosmetic and rather self-explanatory. */
+
 .button {
-  display: inline-block;
-  width: 15.46875rem; 
-  height: 2.8125rem;
-  box-shadow: 0px 4px 4px rgba(0,0,0, .25);
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.125rem;
-  text-align: center;
+  display: inline-block; /*[1]*/
+  padding: .65703125rem 4.56396875rem; /*[2, !]*/
+  box-shadow: 0px 4px 4px rgba(0,0,0, .25); /*[!]*/
+  font-family: 'Open Sans', sans-serif; /*[!]*/
+  font-size: 1.125rem; /*[!]*/
+  text-align: center; 
+  text-decoration: none;
 }
 
-.button--small {
-  width: 7.8125rem;
-}
 
-.button--cta-primary {
-  /* primary color*/
-}
+  /*-- ###BUTTON-BASE-ELEMENT-MODIFIERS --*/
 
-.button--cta-secondary {
-  /* secondary color*/
-}
+  .button--small {
+    padding: .65703125rem 2.281984375rem; /*[2, !]*/
+  }
 
-.button--signup {
-  background: #bacc14;
-  color: #27ae60;
-}
+  .button--cta-primary {
+    background: #ff4e50;
+    color: #fff;
+  }
+
+  .button--cta-secondary {
+    background: #ede574;
+    color: #f2994a;
+  }
+
+  .button--cta-tertiary {
+    background: #27ae60;
+    color: #bccd1e;
+  }
+
+  .button--signup {
+    background: #bacc14;
+    color: #27ae60;
+  }
+
+  .button:hover {
+    /* FIXME - needs a hover state.*/
+  }
+
+  .button:active {
+   /* FIXME - needs an active state.*/ 
+  }
 
 
 
@@ -880,7 +930,9 @@ aligned horizontally with this property.  */
   /* [3] We need a whitespace on top of the heading that conforms to the
   layout grid's vertical rhythm. Because of the margin collapsing we can
   execute this using a padding-top property. Make sure to match this value to
-  whatever vertical rhythm you're using. */
+  whatever vertical rhythm you're using. 
+
+  Only one that inherits its margin-bottom from the utility styles (h2).*/
 
   .newsletter-signup__heading { 
     color: #fff; /*[!]*/
