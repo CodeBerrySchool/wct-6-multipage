@@ -17,7 +17,7 @@ body {
 /* [x] The normalize.css has a top and bottom margin on h1-6 and p elements.
 These helpers nullify that so it won't interfere with the grid. */
 
-h1, h2,
+h1, h2, h3, h4,
 p,
 ul {
   margin: 0;
@@ -26,9 +26,15 @@ ul {
 /* This rule set extends the uniform vertical rhythm to the headings and
 paragraphs. Not sure if  it belongs here or to the layout grid.  */
 
-h2,
+h2, h3, h4,
 p {
   margin-bottom: 1.5rem;
+}
+
+/* To override the user agent stylesheet's default bolding of headings. */
+
+h3, h4 {
+  font-weight: 400;
 }
 
 h2 {
@@ -91,6 +97,11 @@ class must be  placed below the full-width class (CSS cascading).
 The one-fourth creates a 4-column view. Its margin is the same as the 3 column. 
 
 The layout__item--centered modifier centers text-based elements in a container.
+
+The flexobox containers are a hack to solve the pricing table problem. It has
+to be invoked on the pricing card itself which breaks the separation of
+concerns  but it's acceptable as a temporary solve. A full flexbox grid would
+of course  solve this problem.
 
 */
 
@@ -202,6 +213,19 @@ The layout__item--centered modifier centers text-based elements in a container.
   .layout__item--centered {
     text-align: center;
   }
+
+  @media (min-width: 768px) {
+
+  .layout__item--flex-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .layout__item--flex-item {
+    width: 30%;
+  }
+
+}
 
 
 

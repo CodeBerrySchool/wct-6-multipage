@@ -288,6 +288,139 @@ centering won't break the component. Make sure to adapt these if you use a diffe
 
 
 
+/*------------------------------------*\
+  #PRICING-TABLE-THEME-MODIFIERS
+\*------------------------------------*/
+
+
+/* This section styles the lead text on the top of the pricing page. It has no
+base component because it's a unique occurence in the project.
+
+Most of its styling is here except for the headings weight (utilities) and the
+layout (comes from the flex modifiers in the layout grid.) 
+
+This is the  one component where the grid is not clearly separated from
+content. The reason for this is that we use a non-flexbox grid but use flexbox
+to solve the height problem of the cards. This is a necessary compromise and a
+possible point in a future refactor. Read further in the grid comments.
+
+[1] Center aligns elements inside the card.
+
+[2] Adds a base text color, feel free to change it.
+
+[3] Adds shadow to the cards on bigger screens. Only triggers on desktop to
+save unnecessary loading on mobile. */
+
+.pricing-card {
+  text-align: center; /*[1]*/
+  color: #f2f2f2; /*[2]*/
+}
+
+@media (min-width: 768px) {
+  
+  .pricing-card {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); /*[3]*/
+  }
+
+}
+
+
+/* [4] Extends the vertical rhythm inside the card. Make sure to adapt it if
+you use  a different grid. It's a padding instead of a margin to extend the
+background color  of the card as well. (Has a counterpart on the last element
+of the card.)
+
+[5] Creates a divider between the tagline and the title of the card. Identical
+to the one inside the team card components.*/
+
+.pricing-card__tagline {
+  padding-top: 1.5rem; /*[4]*/
+}
+
+.pricing-card__tagline::after { /*[5]*/
+    content: '';
+    display: block;
+    width: 33.3%;
+    height: 2px;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+    margin: .5rem auto 0;
+  }
+
+
+/* [6] Styles the card title. */
+
+.pricing-card__tour-name { /*[6]*/
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+}
+
+
+/* [7] The features are contained in an unordered list. This strips the list
+of its default styling and adds vertical rhythm. */
+
+.pricing-card__feature-list { /*[7]*/
+  list-style-type: none;
+  padding: 0 5%;
+  margin: 0 0 1.5rem;
+}
+
+
+/* [8] Adds a divider to the list items.
+
+[9] Creates vertical separation between list item and divider  and between list
+items. */
+
+.pricing-card__feature {
+  border-bottom: 1px solid #f2f2f2; /*[8]*/
+  margin-bottom: 1rem; /*[9]*/
+  padding-bottom: 1rem; /*[9]*/
+}
+
+
+/* [10] Extends vertical rhythm, make sure to adapt it if you use a different grid. */
+
+.pricing-card__button {
+  margin-bottom: 1.5rem; /*[10]*/
+}
+
+
+/* [11] The counterpart of the first element, the padding extends the vertical rhythm. 
+Make sure to adapt it if needed. */
+
+.pricing-card__price { /*[11]*/
+  padding-bottom: 1.5rem;
+  font-size: .875rem;
+  font-weight: 700;
+}
+
+
+/* [12] Modifiers that add differenct background colors. */
+
+.pricing-card--historical { /*[12]*/
+  background: #fc9b4d;
+}
+
+.pricing-card--culinary { /*[12]*/
+  background: #bacc14;
+}
+
+.pricing-card--art { /*[12]*/
+  background: #fd6062;
+}
+
+/* [13] Scales up the primary card on desktop and adds a bigger shadow. */
+
+@media (min-width: 768px) {
+  
+  .pricing-card--art { /*[13]*/
+    transform: scale(1.04);
+    box-shadow: 4px 6px 6px rgba(0, 0, 0, 0.25);
+  }
+
+}
+
 
 
 
