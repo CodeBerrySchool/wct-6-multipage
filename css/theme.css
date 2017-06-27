@@ -64,6 +64,91 @@
 
 
 /*------------------------------------*\
+  #TEAM-CARD-THEME-MODIFIERS
+\*------------------------------------*/
+
+
+/* These styles extend the base team card component. All of its styling can be
+found here,  except for the image size (that's in the base component) and the
+layout of the cards (that comes  from the layout grid).
+
+[1] Aligns the elements inside the card to center.
+
+[2] Overrides the default vertical rhythm from the layout utilities. Creates a
+more condensed view for the cards.
+
+[3] Adds a horizontal divider for visual separation and flair through a
+pseudo-element. */
+
+.team-card {
+  text-align: center; /*[1]*/
+  background: lightcoral; /* helper style, will be removed. */
+}
+
+  .team-card__flavor-text,
+  .team-card__name {
+    margin-bottom: 1rem; /*[2]*/
+  }
+
+  .team-card__flavor-text {
+    color: #bdbdbd;
+  }
+
+  .team-card__flavor-text::after { /*[3]*/
+    content: '';
+    display: block;
+    width: 33.3%;
+    height: 2px;
+    background-color: #333;
+    border-radius: 4px;
+    margin: .5rem auto 0;
+  }
+
+
+  .team-card__name {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+  }
+
+
+  /* This sub-section styles the social icons in the team cards. It's
+  identical to the styles inside the footer. Why repeat it? The footer icons'
+  class is unique to the footer in its semantics and organization. Reusing it
+  here would create architectural confusion therefore the duplication of the
+  styles is the lesser of two evils. In the future these elements could be
+  refactored to their own base components and removed from the team-card and
+  footer-main components.
+
+  [4] Transforms the inline icon so it could accept margins.
+
+  [5] Adds separation between the icons, is negated by the last-child
+  declaration further down below.
+
+  The rest of the styles are cosmetic and self-explanatory. */
+
+  .team-card__social-icon { 
+    display: inline-block; /*[4]*/
+    margin-right: 1rem; /*[5]*/
+    color: #333;
+    cursor: pointer;
+  }
+
+    .team-card__social-icon:last-child { /*[5]*/
+      margin-right: 0;
+    }
+
+    .team-card__social-icon:hover {
+      color: #bdbdbd;
+      transition: .5s;
+    }    
+
+
+
+
+
+
+
+/*------------------------------------*\
   #COMPANY-DATA-THEME-MODIFIERS
 \*------------------------------------*/
 

@@ -315,14 +315,13 @@ layout grid. If you want to use a different rhythm, make sure to adapt this. */
   #TEAM-CARD-STYLES
 \*------------------------------------*/
 
-.team-card {
-  width: 100%;
-  background: lightcoral;
-}
 
-  .team-card__image {
-    width: 100%;
-  }
+/* This is the base team-card component. It's extended in the theme.css file,
+under the team-card-theme-modifiers section. */
+
+.team-card__image {
+  width: 100%;
+}
 
 
 
