@@ -1,0 +1,189 @@
+/*------------------------------------*\
+  #LAYOUT-STYLES
+\*------------------------------------*/
+
+
+/* TODO: This section needs better comments and a rethinking  of the class names.
+However it's working for now so this  will be done in a later version.
+
+We use the following classes to create a very basic grid.
+
+The .layout element creates a fluid container which is the immediate child of
+the body. Inside that there is four kinds of layout containers: a 100%, 
+a 90%, a 66.6% and a 50% wide one.
+
+To create multi-column layouts you can nest layout__items inside layout__items.
+The smaller items can create a three or four column view.
+
+The vertical rhythm is established through a single margin-bottom declaration
+on the .layout__item class. Since this class is present on every grid item, it
+can create a uniform margin spacing.
+
+The grid is capable of creating a three-column layout. The .layout__item--one-
+third div takes up the 30%  of the available space and is floated to the left,
+creating the three-column layout. It is only triggered upwards from 768px
+using a media query. Floats are cleared via a pseudo-element and a
+dedicated class.
+
+The three column layout needs gutters. This is solved through margin
+declarations for the first and last column. The width of the columns is
+established as 30%, the remaining 9.9% is divided between a right margin for
+the first and a left margin for the last column. (Note: This could've been
+done way more easier through flexbox with a space-between value.)
+
+The margin-bottom: 0; declaration on the last layout__item ensures that the
+end of the page doesn't have extra margins. You may need to check the last
+item  in the last container though. It could add extra margins on its own
+which you have to handle differently. 
+
+The .layout__item--nested modifier strips the container of its bottom margin.
+This is useful because when you have a container inside another container
+their bottom margins compound.  With this modifier you can maintain the
+unified vertical rhythm. 
+
+However this poses a problem when the nested containers are stacked and they
+have no margin. A media query takes care of that by switching  back the
+original margin on the nested elements but only in mobile layout.
+
+The .layout__item--two-thirds is in a media query. In this case it solves  the
+problem of the responsive embedded iframe that is in a 100% wide container.
+When the screen gets large enough, the query triggers and switches the
+embedded  iframe to a centered 66.6% wide container. For this to work the
+class must be  placed below the full-width class (CSS cascading).
+
+The one-fourth creates a 4-column view. Its margin is the same as the 3 column. 
+
+The layout__item--centered modifier centers text-based elements in a container.
+
+The flexobox containers are a hack to solve the pricing table problem. It has
+to be invoked on the pricing card itself which breaks the separation of
+concerns  but it's acceptable as a temporary solve. A full flexbox grid would
+of course  solve this problem.
+
+*/
+
+.layout {
+  margin: 0;
+  padding: 0;
+  /*background: lightblue;*/
+}
+
+
+  .layout__item {
+    margin-bottom: 1.5rem;
+  }
+
+
+  .layout__item--fullwidth {
+    width: 100%;
+    background: lightgreen;
+
+  }
+
+
+  .layout__item--ninetenth {
+    width: 90%;
+    max-width: 1600px;
+    margin: 0 auto 1.5rem;
+    /*background: lightyellow;*/
+  }
+
+
+  @media (min-width: 768px) {
+
+    .layout__item--two-thirds {
+      width: 66.6%;
+      max-width: 1280px;
+      margin: 0 auto 1.5rem;
+      /*background: gold;*/
+    }
+
+    .layout__item--half {
+      width: 50%;
+      max-width: 1000px;
+      margin: 0 auto 1.5rem;
+      /*background: forestgreen;*/
+    }
+
+  }
+
+
+  @media (min-width: 768px) {
+
+    .layout__item--one-third {
+      width: 30%;
+      float: left;
+      overflow: hidden;
+      /*background: rebeccapurple;*/
+    }
+
+    .layout__item--one-third:first-child {
+      margin-right: 4.95%;
+    }
+
+    .layout__item--one-third:last-child {
+      margin-left: 4.95%;
+    }
+
+  }
+
+  @media (min-width: 768px) {
+
+    .layout__item--one-fourth {
+      width: 21.2875%;
+      float: left;
+      overflow: hidden;
+      /*background: rebeccapurple;*/
+      margin-right: 4.95%;
+    }
+
+    .layout__item--one-fourth:last-child {
+      margin-right: 0;
+    }
+
+  }
+
+   @media (min-width: 768px) {
+
+  .layout__item--flex-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .layout__item--flex-item {
+    width: 30%;
+  }
+
+}
+
+  .layout__item--clearfix::after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+
+
+  .layout__item--nested {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    
+    .layout__item--nested {
+      margin-bottom: 1.5rem;
+    }
+
+  }
+
+
+  .layout__item:last-child {
+    margin-bottom: 0;
+  }
+
+  .layout__item--centered {
+    text-align: center;
+  }
+
+ 
+
+

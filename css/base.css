@@ -1,0 +1,139 @@
+/*------------------------------------*\
+  #README
+\*------------------------------------*/
+
+
+/* 
+
+Welcome to the base.css file. It has a dual purpose:
+
+1. To act as a bird-eye view of the CSS architecture of this project.
+2. And include some general utility styles that are used across the whole project.
+
+
+==== BIRD-EYE VIEW ====
+
+This project uses a modular CSS architecture. We use components and separation
+of concerns to craft maintainable CSS. Here is the general table of contents:
+
+TOC
+normalize.min.css............................A level playing field.
+base.css.....................................Overview and utilities.
+layout.css...................................A layout grid that arranges everything.
+components.css...............................Reusable components.
+  General Purpose Components
+    Media Objects
+    Buttons
+    Testimonials
+    Team Cards
+  Structural Components
+    Main Header
+    Secondary Header
+    Newsletter Signup
+    Main Footer
+theme.css....................................Styles and components specific to this project.
+  Inline Links
+  Testimonial Modifiers
+  Team Card Modifiers
+  Company Data
+  FAQ Modifiers
+  Pricing Lead
+  Pricing Cards
+
+
+A FEW NOTES ON ARCHITECTURE
+
+The base.css only contains high-level utilities and some extension for the layout grid. 
+(TODO: The latter could be moved to layout.css in a later refactor.)
+
+The layout grid only creates the high-level layout of the page. It does not
+deal with the  inner layouts of the components. It's extended  on a component
+by component basis in both the components.css and theme.css file.
+
+The components are not totally clearly separated from their theme and not all 
+components are made reusable. You can read further about this situation in theme.css, 
+this mild inconsistency is acceptable in this version (and as a tool for ease of 
+understanding since this is a sample project.)
+
+
+A FEW NOTES ON NAMING AND HTML CONNECTIONS
+
+We use a BEM-like naming system (Block, Element, Modifier) in the project. To
+avoid specificity issues we mostly use (multiple) classes to select elements
+and try to avoid any contextual selectors or general or too specific
+selectors.
+
+Exception are the utilities in base.css.
+
+FINAL NOTE
+
+All of the CSS is heavily commented, you can find tables of contents,
+separators and explanations in all of the files. Use them. :)
+
+*/
+
+
+
+
+
+/*------------------------------------*\
+  #UTILITIES
+\*------------------------------------*/
+
+
+/* TODO: This section could benefit from better comments. */
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+
+
+body {
+  color: #333;
+  font-family: 'Gentium Basic', serif;
+  line-height: 1.5;
+}
+
+
+h2 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #bdbdbd;
+}
+
+
+/* To override the user agent stylesheet's default bolding of headings. */
+
+h3, h4 {
+  font-weight: 400;
+}
+
+
+
+
+
+/* The normalize.css has a top and bottom margin on h1-6 and p elements.
+These helpers nullify that so it won't interfere with the grid. */
+
+h1, h2, h3, h4,
+p,
+ul {
+  margin: 0;
+}
+
+
+/* This rule set extends the uniform vertical rhythm to the headings and
+paragraphs. Not sure if  it belongs here or to the layout grid.  */
+
+h2, h3, h4,
+p {
+  margin-bottom: 1.5rem;
+}
+
+
+
+

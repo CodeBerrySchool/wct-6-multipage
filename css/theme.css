@@ -1,3 +1,20 @@
+/* 
+CONTENTS
+
+Inline Links.......................Styles inline anchor elements.
+Testimonial Modifiers..............Extends the testimonial component to fit the project.
+Team Card Modifiers................Extends the team card component to fit the project.
+Company Data.......................Styles the company data list on the contact page.
+FAQ Modifiers......................Modifies the layout grid a bit on the faq page.
+Pricing Lead.......................Styles the steps on the top of the pricing page.
+Pricing Cards......................Styles the pricing cards on the pricing page.
+
+*/
+
+
+
+
+
 /*------------------------------------*\
   #INLINE-LINKS-THEME-MODIFIERS
 \*------------------------------------*/
@@ -30,7 +47,7 @@
 
 .testimonial {
   text-align: center; /*[1]*/
-  background: lightcoral; /* Temporary helper style. */
+  /*background: lightcoral;*/ /* Temporary helper style. */
 }
 
   /* [2] Overrides the default 100% width defined in the base component.
@@ -82,7 +99,7 @@ pseudo-element. */
 
 .team-card {
   text-align: center; /*[1]*/
-  background: lightcoral; /* helper style, will be removed. */
+  /*background: lightcoral;*/ /* helper style, will be removed. */
 }
 
   .team-card__flavor-text,
@@ -289,7 +306,7 @@ centering won't break the component. Make sure to adapt these if you use a diffe
 
 
 /*------------------------------------*\
-  #PRICING-TABLE-THEME-MODIFIERS
+  #PRICING-CARD-THEME-MODIFIERS
 \*------------------------------------*/
 
 

@@ -1,256 +1,129 @@
-/*------------------------------------*\
-  #HELPER-STYLES
-\*------------------------------------*/
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  color: #333;
-  font-family: 'Gentium Basic', serif;
-  line-height: 1.5;
-}
+/* 
+CONTENTS
 
 
+GENERAL PURPOSE COMPONENTS
+Media Object........................Make iframes responsive.
 
-/* [x] The normalize.css has a top and bottom margin on h1-6 and p elements.
-These helpers nullify that so it won't interfere with the grid. */
+Button Base Component...............The basis for every button.
+  Button Base Modifiers.............Dimensions and coloring for specific instances.
 
-h1, h2, h3, h4,
-p,
-ul {
-  margin: 0;
-}
+Testimonial Base Component..........Testimonials.
 
-/* This rule set extends the uniform vertical rhythm to the headings and
-paragraphs. Not sure if  it belongs here or to the layout grid.  */
-
-h2, h3, h4,
-p {
-  margin-bottom: 1.5rem;
-}
-
-/* To override the user agent stylesheet's default bolding of headings. */
-
-h3, h4 {
-  font-weight: 400;
-}
-
-h2 {
-  font-family: "Open Sans", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #bdbdbd;
-}
+Team Card Base Component............Team member cards.
 
 
+STRUCTURAL COMPONENTS
+Main Header.........................An omnipresent header / navbar on top.
+  Base Header Element...............Base for the responsive nav.
+  Mobile Nav Element (Closed).......Canvas for the mobile closed view.
+  Mobile Sitename Element...........A brand name (or logo).
+  Hamburger Icon Element............A clickable hamburger icon constructed with CSS.
+    Label...........................The proxy for the checkbox.
+    Spans...........................The ones that form the hamburger.
+    Animation.......................On-click animations.
+  Mobile Nav Element (Open).........Canvas for the mobile open view.
+    Link List.......................The elemnt that is positioned on the nav.
+    Links...........................The links themselves.
+  Desktop Nav Element...............A different nav for the desktop.
+
+Secondary Header....................The cover images.
+  Base Element......................Dimensions and layout basis.
+    Content.........................Styles for the headings and other header content.
+    Backgrounds.....................Declares different background images.
+    Main Modifier...................A larger variant for the main landing page.
+
+Newsletter Signup Form..............A signup section at the bottom of every page.
+
+Main Footer.........................A footer with secondary nav and social links.
+  Layout Extension..................A component-specific extension for the grid.
+  Nav Links.........................Secondary nav.
+  Social Icons......................A row of font awesome icons.
+  Copyright Notice..................A standard small notice.
 
 
-/*------------------------------------*\
-  #LAYOUT-STYLES
-\*------------------------------------*/
+=========================================================================
 
-/*
-We use the following classes to create a very basic grid.
 
-The .layout element creates a fluid container which is the immediate child of
-the body. Inside that there is two kinds of layout containers: a 100% wide and
-a 90% wide one.
+NOTE 
+Some of these components are extended in the theme.css file while  others
+are not. The architecture is not totally consistent on this. The rule of
+thumb was:
 
-The grid is capable of creating a three-column layout. The .layout__item--one-
-third div takes up the 30%  of the available space and is floated to the left,
-creating the three-column layout. It is only triggered upwards from 768px
-thanks to a media query. Floats are cleared via a pseudo- element and a
-dedicated class.
+1. Structural components are styles entirely here except for their outer
+layout (which comes from layout.css) and utilities (which comes from
+base.css)
 
-The vertical rhythm is established through a single margin-bottom declaration
-on the .layout__item class. Since this class is present on every grid item, it
-can create a uniform margin spacing.
+2. The general purpose components bear some styling that is absolutely
+necessary for them but extended in the theme.css.
 
-The three column layout needs gutters. This is solved through margin
-declarations for the first and last column. The width of the columns is
-established as 30%, the remaining 9.9% is divided between a right margin for
-the first and a left margin for the last column. (Note: This could've been
-done way more easier through flexbox with a space-between value.)
+3. Components that are only appear on one page are style entirely  in the
+theme.css file.
 
-The margin-bottom: 0; declaration on the last layout__item ensures that the
-end of the page doesn't have extra margins. You may need to check the last
-item  in the last container though. It could add extra margins on its own
-which you have to handle differently. 
+This is not a perfect separation of concerns, some unique components could be
+migrated here (in part) and some structural components could  be extended in
+theme.css retaining only their essentials here.
 
-The .layout__item--nested modifier strips the container of its bottom margin.
-This is useful because when you have a container inside another container
-their bottom margins compound.  With this modifier you can maintain the
-unified vertical rhythm. 
+TODO: This is something that a future refactoring can solve.
 
-However this poses a problem when the nested containers are stacked and they
-have no margin. The media query takes care of that by switching  back the
-original margin on the nested elements but only in mobile layout.
-
-The .layout__item--two-thirds is in a media query. In this case it solves  the
-problem of the responsive embedded iframe that is in a 100% wide container.
-When the screen gets large enough, the query triggers and switches the
-embedded  iframe to a centered 66.6% wide container. For this to work the
-class must be  placed below the full-width class (CSS cascading).
-
-The one-fourth creates a 4-column view. Its margin is the same as the 3 column. 
-
-The layout__item--centered modifier centers text-based elements in a container.
-
-The flexobox containers are a hack to solve the pricing table problem. It has
-to be invoked on the pricing card itself which breaks the separation of
-concerns  but it's acceptable as a temporary solve. A full flexbox grid would
-of course  solve this problem.
+NOTE-2 
+Everything that is marked with an exclamation point is theme-specific,
+you can change those if you use a different design. (N.b. these are  the
+things that could be delegated to theme.css.)
 
 */
 
-.layout {
-  margin: 0;
-  padding: 0;
-  background: lightblue;
-}
 
 
-  .layout__item {
-    margin-bottom: 1.5rem;
-  }
 
 
-  .layout__item--fullwidth {
-    width: 100%;
-    background: lightgreen;
-
-  }
 
 
-  .layout__item--ninetenth {
-    width: 90%;
-    max-width: 1600px;
-    margin: 0 auto 1.5rem;
-    background: lightyellow;
-  }
-
-
-  @media (min-width: 768px) {
-
-    .layout__item--two-thirds {
-      width: 66.6%;
-      max-width: 1280px;
-      margin: 0 auto 1.5rem;
-      background: gold;
-    }
-
-    .layout__item--half {
-      width: 50%;
-      max-width: 1000px;
-      margin: 0 auto 1.5rem;
-      background: forestgreen;
-    }
-
-  }
-
-
-  @media (min-width: 768px) {
-
-    .layout__item--one-third {
-      width: 30%;
-      float: left;
-      overflow: hidden;
-      background: rebeccapurple;
-    }
-
-    .layout__item--one-third:first-child {
-      margin-right: 4.95%;
-    }
-
-    .layout__item--one-third:last-child {
-      margin-left: 4.95%;
-    }
-
-  }
-
-  @media (min-width: 768px) {
-
-    .layout__item--one-fourth {
-      width: 21.2875%;
-      float: left;
-      overflow: hidden;
-      background: rebeccapurple;
-      margin-right: 4.95%;
-    }
-
-    .layout__item--one-fourth:last-child {
-      margin-right: 0;
-    }
-
-  }
-
-  .layout__item--clearfix::after {
-    content: "";
-    clear: both;
-    display: block;
-  }
-
-
-  .layout__item--nested {
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 768px) {
-    
-    .layout__item--nested {
-      margin-bottom: 1.5rem;
-    }
-
-  }
-
-
-  .layout__item:last-child {
-    margin-bottom: 0;
-  }
-
-  .layout__item--centered {
-    text-align: center;
-  }
-
-  @media (min-width: 768px) {
-
-  .layout__item--flex-container {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .layout__item--flex-item {
-    width: 30%;
-  }
-
-}
 
 
 
 /*------------------------------------*\
-  #BUTTON-STYLES
+  #MEDIA-OBJECT-STYLES
 \*------------------------------------*/
 
+/*  This section creates a responsive wrapper for iframes. Since iframes
+arrive in a fixed container,  we need to make them responsive somehow. This
+method requires a wrapper around the iframe (.responsive-media)  and a class
+on the iframe itself (.responsive-media__embed). The wrapper has an intrinsic
+ratio  using a padding in percentages which corresponds to the 16:9 ratio of
+the iframe. The wrapper essentially forces  the iframe to recalculate its
+height on every viewport size.; 
 
-/* This section contains styles for all button components. If you want to
-change the color, dimensions typography, hover or active states of the
-buttons, you can do so here.
+The videos's aspect ration is 06:9 but that's not suitable for the map embeds
+this is why we have the .responsive-media--map modifier.
+*/
 
-How buttons build up: there is a base .button class which contains everything
-except for specific  color schemes. Modifiers give those colors. If you need a
-smaller button, there is a modifier for  that too.
+.responsive-media {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+}
 
-Note: the newsletter signup form's button has some specific styling because of
-its placement and because its a <button> not an anchor tag. You can find those
-in the newsletters signup form section. */
+  .responsive-media__embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+
+.responsive-media--map {
+  padding-bottom: 38.1944%;
+}
 
 
 
 
 
-/*---- ##BUTTON-BASE-ELEMENT ----*/
+/*------------------------------------*\
+  #BUTTON-BASE-COMPONENT
+\*------------------------------------*/
 
 
 /* [1] Allows the element to accept box model values.
@@ -282,7 +155,7 @@ The rest of the styles are cosmetic and rather self-explanatory. */
 }
 
 
-  /*-- ###BUTTON-BASE-ELEMENT-MODIFIERS --*/
+  /*---- ##BUTTON-BASE-MODIFIERS ----*/
 
   .button--small {
     padding: .65703125rem 2.281984375rem; /*[2, !]*/
@@ -318,8 +191,10 @@ The rest of the styles are cosmetic and rather self-explanatory. */
 
 
 
+
+
 /*------------------------------------*\
-  #TESTIMONIAL-STYLES
+  #TESTIMONIAL-BASE-COMPONENT
 \*------------------------------------*/
 
 
@@ -343,7 +218,7 @@ layout grid. If you want to use a different rhythm, make sure to adapt this. */
 
 
 /*------------------------------------*\
-  #TEAM-CARD-STYLES
+  #TEAM-CARD-BASE-COMPONENT
 \*------------------------------------*/
 
 
@@ -359,46 +234,7 @@ under the team-card-theme-modifiers section. */
 
 
 /*------------------------------------*\
-  #MEDIA-OBJECT-STYLES
-\*------------------------------------*/
-
-/*  This section creates a responsive wrapper for iframes. Since iframes
-arrive in a fixed container,  we need to make them responsive somehow. This
-method requires a wrapper around the iframe (.responsive-media)  and a class
-on the iframe itself (.responsive-media__embed). The wrapper has an intrinsic
-ratio  using a padding in percentages which corresponds to the 16:9 ratio of
-the iframe. The wrapper essentially forces  the iframe to recalculate its
-height on every viewport size.; 
-
-The videos's aspect ration is 06:9 but that's not suitable for the map embeds
-this is why we have the .responsive-media--map modifier.
-*/
-
-.responsive-media {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  height: 0;
-}
-
-.responsive-media--map {
-  padding-bottom: 38.1944%;
-}
-
-  .responsive-media__embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-  }
-
-
-
-
-
-
-/*------------------------------------*\
-  #MAIN-HEADER-STYLES
+  #MAIN-HEADER-COMPONENT
 \*------------------------------------*/
 
 
@@ -940,7 +776,7 @@ It consists of a nav element and anchor elements inside it. */
 
 
 /*------------------------------------*\
-  #SECONDARY-HEADER-STYLES
+  #SECONDARY-HEADER-COMPONENT
 \*------------------------------------*/
 
 
@@ -1095,7 +931,7 @@ wrapper  above in the base section.*/
 
 
 /*------------------------------------*\
-  #NEWSLETTER-SIGNUP-STYLES
+  #NEWSLETTER-SIGNUP-FORM-COMPONENT
 \*------------------------------------*/
 
 
@@ -1189,7 +1025,7 @@ aligned horizontally with this property.  */
 
 
 /*------------------------------------*\
-  #FOOTER-MAIN-STYLES
+  #FOOTER-MAIN-COMPONENT
 \*------------------------------------*/
 
 
@@ -1305,19 +1141,6 @@ are contained in this section. */
   }
 
 
-
-
-
-/* ===================================================== */
-
-
-
-.list-test { /* temporary proof of concept. not really working on smaller viewports. */
-  margin: 0 auto;
-  width: 35%;
-  background: rebeccapurple;
-  list-style: none;
-}
 
 
 

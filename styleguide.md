@@ -44,3 +44,8 @@ Notes:
 - add the vertical rhythm utilities to the layout grid, it's logical to be there. Round up every place that extends the vertical rhythm. Include in the layout grid comments.
 - Switch to layout centering everywhere.
 - The separation will not be perfect. In the reused components the base structure and theme will be more muddled. In this project this is not a problem but if we would want to bring along these components we should refactor everything to the theme.css that has a ! mark.
+- hover states and active states
+- layover on map
+- rethink base font-size
+- rethink margins on main page and team page, also add missing divider on main page.
+- add favicon
