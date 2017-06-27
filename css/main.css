@@ -125,9 +125,16 @@ The layout__item--centered modifier centers text-based elements in a container.
 
     .layout__item--two-thirds {
       width: 66.6%;
-      max-width: max-width: 1280px;
+      max-width: 1280px;
       margin: 0 auto 1.5rem;
       background: gold;
+    }
+
+    .layout__item--half {
+      width: 50%;
+      max-width: 1000px;
+      margin: 0 auto 1.5rem;
+      background: forestgreen;
     }
 
   }

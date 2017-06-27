@@ -6,12 +6,12 @@
 /* Styles the simple inline anchor elements on the page. */
 
 .inline-link {
-  color: #333;
+  color: #bdbdbd;
   text-decoration: none;
 }
 
 .inline-link:hover {
-  color: #bdbdbd;
+  color: #333;
   transition: .5s;
 }
 
@@ -197,6 +197,92 @@ overriding the default vertical rhythm. */
 }
 
 
+
+
+
+/*------------------------------------*\
+  #PRICING-LEAD-THEME-MODIFIERS
+\*------------------------------------*/
+
+
+/* This section styles the lead text on the top of the pricing page. It has no
+base component because it's a unique occurence in the project. 
+
+Its alignment is set via the layout grid except for the list's vertical rhythm 
+and left alignment.
+
+The tricky part of this component are the custom counters in place of the plain 
+ordered list numbers. They are created with a CSS counter as a ::before pseudo-element 
+for each list item. But because the default styling of the list is nullified, the 
+default list indentation is gone as well. 
+
+To solve this we use a position: relative on the list items, create space for the 
+counter with a left padding then with position absolute we move the counter to the 
+start of the line, over the padding. This way the list item's text has the proper 
+indentation. 
+
+In detail: 
+
+[1] Nullifies the default list styling.
+
+[2] Adds vertical rhythm and sets the list back to left-aligned so the laout grid's 
+centering won't break the component. Make sure to adapt these if you use a different grid. */
+
+.pricing-lead__list {
+  list-style-type: none; /*[1]*/
+  padding: 0; /*[1]*/
+  margin: 0 0 1.5rem; /*[2]*/
+  text-align: left; /*[2]*/
+}
+
+
+  /* [3] Sets up a custom counter.
+
+  [4] Creates some vertical separation between the list items.
+
+  [5] Relatively positions the element so we can position the counter in
+  relation  to the list item itself.
+
+  [6] This is the padding that we will use to "park" the counter. */
+
+  .pricing-lead__list-item {
+    counter-increment: step-counter; /*[3]*/
+    margin-bottom: .5rem; /*[4]*/
+    position: relative; /*[5]*/
+    padding-left: 1.875rem; /*[6]*/
+  }
+
+
+  /* This sub-section styles the custom counters.
+
+  [7] Adds the custom counter we've set up in the list item.
+
+  [8] The inline-block display is needed for the positioning and the styling of
+  [the element.
+
+  [9] These properties take the counter out of the normal document flow and move
+  it over  to the start of the list item's line (over the padding) and move 2
+  pixels down to align  it vertically.
+
+  [10] These properties create the rounded appearance of the counter.
+
+  [11] Cosmetic and typographic styles. */
+
+  .pricing-lead__list-item::before {
+    content: counter(step-counter); /*[7]*/
+    display: inline-block; /*[8]*/
+    position: absolute; /*[9]*/
+    left: 0; /*[9]*/
+    top: 2px; /*[9]*/
+    line-height: 100%; /*[10]*/
+    padding: .125rem .375rem; /*[10]*/  
+    border-radius: 50%; /*[10]*/
+    background-color: #c4c4c4; /*[11]*/
+    color: #f2f2f2; /*[11]*/
+    font-family: 'Open Sans', sans-serif; /*[11]*/
+    font-weight: 700; /*[11]*/
+    font-size: .875rem; /*[11]*/
+  }
 
 
 
