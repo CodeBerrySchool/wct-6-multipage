@@ -76,8 +76,7 @@ of course  solve this problem.
 
   .layout__item--fullwidth {
     width: 100%;
-    background: lightgreen;
-
+    /*background: lightgreen;*/
   }
 
 
